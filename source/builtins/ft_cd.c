@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:27:27 by oufisaou          #+#    #+#             */
-/*   Updated: 2022/07/01 23:59:39 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:39:43 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	change_env(char *p)
 	free(pwd);
 	return (0);
 }
-
 int	ft_add_list(t_list **env_list, char *str)
 {
 	t_list	*tmp;

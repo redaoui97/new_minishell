@@ -3,34 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:13:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2021/11/18 16:59:01 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:19:34 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static size_t	ret_right_size(char const *s, unsigned int start, size_t len)
+{
+	size_t	size;
+
+	if (start + len < ft_strlen(s))
+		size = len + 1;
+	else
+		size = ft_strlen(s) - start + 1;
+	return (size);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	l_s;
-	char	*res;
+	char	*a;
+	size_t	i;
+	size_t	j;
+	size_t	size;
 
-	l_s = ft_strlen(s);
-	if (start > l_s || len <= 0)
-		return (ft_strdup(""));
-	if ((start + len) > l_s)
-	{
-		res = (char *)ft_calloc(l_s - start + 1, sizeof(char));
-		if (!res)
-			return (NULL);
-		ft_strlcpy(res, s + start, l_s - start + 1);
-		return (res);
-	}
-	res = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!res)
+	if (!s)
 		return (NULL);
-	ft_strlcpy(res, s + start, len + 1);
-	return (res);
+	if (start >= ft_strlen(s))
+	{
+		a = malloc(sizeof(char) * 1);
+		a[0] = 0;
+		return (a);
+	}
+	size = ret_right_size(s, start, len);
+	a = (char *)malloc(sizeof(char) * (size));
+	if (!a)
+		return (NULL);
+	i = 0;
+	j = start;
+	while (i < size - 1 && s[j])
+		a[i++] = s[j++];
+	a[i] = '\0';
+	return (a);
 }

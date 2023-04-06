@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tokens__.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:05 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 18:06:40 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:21:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_sympol_less(t_token **tokens, char **str, int *here)
 void	get_token_utils(t_token **tokens, char **str, int *here, int *here2)
 {
 	t_token	*tmp;
-
+	
 	add_token_last(tokens, WORD, \
 	ft_substr(*str, 0, get_word(str, here, here2)));
 	if (*here2 == 1)

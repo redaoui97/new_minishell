@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_creation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:12 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 05:03:49 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:43:02 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_cmd	*cmds_and_redirections(t_token **tokens, int *pipes)
 {
 	t_cmd	*cmds;
 	int		status;
-
+	
 	*pipes = count_pipes(*tokens);
 	cmds = creat_cmds(tokens);
 	check_file_direcitons(&cmds, *pipes);
