@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 19:45:26 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 21:58:22 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ typedef struct s_cmd
 {
 	char	*cmd_path;
 	char	**cmd_args;
-	int		infile_fd;
-	int		outfile_fd;
-	char	*infile;
-	char	*outfile;
+	int		infile;
+	int		outfile;
 	int		exec;
 	t_token	*tokens_cmd;
 }	t_cmd;
@@ -234,4 +232,6 @@ void		suite8(char *str);
 char		*ft_itoa1(long long n);
 int			to_num(char c);
 void		suite9(char *str);
+/*Exec functions*/
+void	execute(t_cmd *cmds, int pipes_count);
 #endif
