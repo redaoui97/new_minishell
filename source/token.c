@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:47 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/06 00:58:51 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 03:36:31 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_token(t_token **tokens, char **str)
 {
 	int		here;
 	int		here2;
-	t_token	*tmp;
 
 	here = 0;
 	here2 = 0;

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/06 14:27:52 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 03:36:35 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	init_minishell(char **envp)
 
 void	minishell(t_token **tokens)
 {
-	t_token	*ptr;
-	
 	expander(tokens);
 	expander_in_quotes(tokens);
 	join_word(tokens);
@@ -58,16 +56,6 @@ void	minishell(t_token **tokens)
 	rm_quotes_tokens(tokens);
 	g_gen.exec = 0;
 	g_gen.skip_all = 0;
-	/*----------*/
-	//print all the tokens
-	ptr = NULL;
-	ptr = *tokens;
-	while (ptr)
-	{
-		//printf("%s\n", ptr->data);
-		ptr = ptr->next;
-	}
-	/*----------*/
 	get_path_and_execute(tokens);
 }
 
@@ -76,8 +64,7 @@ int	main(int argc, char **argv, char **envp)
 	char	*line;
 	t_token	*tokens;
 	t_cmd	*cmds;
-	t_token	*ptr;
-
+	
 	if (argc != 1)
 		return (1);
 	init_minishell(envp);
@@ -88,12 +75,6 @@ int	main(int argc, char **argv, char **envp)
 		{
 			add_history(line);
 			tokens = tokenize(line);
-			ptr = tokens;
-			while (ptr)
-			{
-				//printf("%s\n", ptr->data);
-				ptr = ptr->next;
-			}
 			free(line);
 			if (syntax_err(tokens))
 				minishell(&tokens);

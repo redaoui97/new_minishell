@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:21 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/06 14:29:01 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 03:36:13 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ void	add_at_end(t_token **tokens_head, t_token *token)
 
 void	add_token_last(t_token **token_head, unsigned int type, char *data)
 {
+	t_token	*ptr;
+	
+	ptr = NULL;
+	ptr = new_token(type, data);
 	if (*token_head == NULL)
-		*token_head = new_token(type, data);
+		*token_head = ptr;
 	else
-		add_at_end(token_head, new_token(type, data));
+		add_at_end(token_head, ptr);
 }
