@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 05:00:04 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 19:45:26 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ typedef struct s_cmd
 {
 	char	*cmd_path;
 	char	**cmd_args;
-	int		infile;
-	int		outfile;
+	int		infile_fd;
+	int		outfile_fd;
+	char	*infile;
+	char	*outfile;
 	int		exec;
 	t_token	*tokens_cmd;
 }	t_cmd;
@@ -125,8 +127,8 @@ int			start_unset(t_list *env, char *next);
 long long	ft_atoll(const char *dest);
 char		**get_cmds(t_token *tokens);
 void		creat_cmd_args(t_cmd **cmds, int pipe);
-t_cmd		*cmds_and_redirections(t_token **tokens, int *pipes);
-void		get_path_and_execute(t_token **toknes);
+t_cmd		*setup_cmd(t_token **tokens, int *pipes);
+void		parse_cmds(t_token **toknes);
 char		*get_cmd_path(char *path, char *cmd);
 void		get_cmds_paht_err(t_cmd **cmds, int i);
 int			is_directory_check(t_cmd **cmds, int i);

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 03:36:35 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 19:45:54 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	minishell(t_token **tokens)
 	rm_quotes_tokens(tokens);
 	g_gen.exec = 0;
 	g_gen.skip_all = 0;
-	get_path_and_execute(tokens);
+	parse_cmds(tokens);
 }
 
 int	main(int argc, char **argv, char **envp)
