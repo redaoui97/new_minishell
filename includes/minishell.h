@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/05 18:13:55 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 05:00:04 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_cmd
 	char	**cmd_args;
 	int		infile;
 	int		outfile;
-	t_token	*tokens_cmd;
 	int		exec;
+	t_token	*tokens_cmd;
 }	t_cmd;
 
 typedef struct s_var

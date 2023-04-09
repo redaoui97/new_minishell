@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:46 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 05:09:08 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:09:34 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 void	close_cmd_files(t_cmd *cmds, int count)
 {
 	int	i;
@@ -41,6 +42,7 @@ void	free_envp(void)
 	}
 }
 
+/*Could delete this*/
 char	*str_to_lower(char *str)
 {
 	char	*new_str;

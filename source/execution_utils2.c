@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:49 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/02 00:56:17 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:09:44 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	sig_handler(void)
 	signal(SIGINT, handler);
 }
 
+
+/*Could delete this*/
 int	run_cmd(t_cmd *cmds, int **pipes, int pipes_num, int *i)
 {
 	int	pid;
@@ -49,6 +51,7 @@ int	run_cmd(t_cmd *cmds, int **pipes, int pipes_num, int *i)
 	return (pid);
 }
 
+/*Could delete this*/
 void	wait_all(int pid, int i, int pipes_num)
 {
 	int	status;

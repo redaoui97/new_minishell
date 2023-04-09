@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_managment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:19 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 15:23:13 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:11:38 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,13 @@ int	get_cmds_path(t_cmd **cmds, int pipes)
 	free(path);
 	return (status);
 }
+
+/*
+check all files
+*/
+/*
+Setup_cmd function: 
+initialized the cmd:
+cmd_path = get_path (returns 0 if not founnd) checks if return is null, throw an error;
+
+*/

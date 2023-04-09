@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:52 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/02 00:57:34 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:09:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 void	execut(t_cmd *cmds, int **pipes, int pipes_num, int i)
 {
 	dup2(cmds[i].infile, STDIN_FILENO);
@@ -33,12 +34,14 @@ void	execut(t_cmd *cmds, int **pipes, int pipes_num, int i)
 	exit(cmds[i].exec);
 }
 
+/*Could delete this*/
 void	fork_faild(int **pipes, int pipes_num)
 {
 	free_pipes(pipes, pipes_num);
 	return ;
 }
 
+/*Could delete this*/
 void	execution(t_cmd *cmds, int pipes_num)
 {
 	int		i;

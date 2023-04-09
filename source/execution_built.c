@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution_built.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:42 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 01:53:14 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:12:48 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 int	is_buit_in(char *cmd)
 {
 	char	*built_in;
@@ -34,6 +35,7 @@ int	is_buit_in(char *cmd)
 	}
 }
 
+/*Could delete this*/
 void	exec_built_in(t_cmd *cmds, int i)
 {
 	int	in;

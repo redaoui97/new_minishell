@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_management.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:40 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/02 00:53:55 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:17:16 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 int	count_pipes(t_token *tokens)
 {
 	int	i;

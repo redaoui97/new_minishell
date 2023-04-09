@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   in_out_file_managment.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:14 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 05:09:33 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:14:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 static void	rm_redi_utils(t_token **token1, t_token **token2)
 {
 	rm_token(token1);

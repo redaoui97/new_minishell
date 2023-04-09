@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   in_out_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:23:50 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/07/01 18:52:44 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:14:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 static void	open_file_err(t_token **tokens, int fd, int status)
 {
 	if ((*tokens)->next->old_data == NULL && (fd == -1 && status != 1))

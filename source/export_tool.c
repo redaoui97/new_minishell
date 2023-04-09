@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_tool.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <oufisaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:31 by oufisaou          #+#    #+#             */
-/*   Updated: 2022/07/01 04:30:56 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:11:24 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*Could delete this*/
 void	bubblesort(t_list **head, int count)
 {
 	t_var	var;
