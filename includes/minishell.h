@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 21:58:22 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/09 23:38:18 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void		is_a_dir(char *dir);
 char		*return_path(char **cmd_path, char **paths);
 char		*ft_strjoin_1(char const *s1, char const *s2);
 void		free_arr(char **arr);
-t_cmd		*creat_cmds(t_token **tokens);
+t_cmd		*creat_cmds(t_token **tokens, int *pipes);
 t_list		*env_create(char **envp);
 char		**set_env(char **envp);
 void		error_free(char *str, t_token *tokens);

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/09 22:01:50 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 01:08:09 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@
 // 	return (NULL);
 // }
 
-// static void	execute_child(char **cmd, int fd_in, int fd_out)
-// {
-// 	pid_t	pid;
-// 	char	*path;
-
-// 	if (fd_in < 0 || fd_out < 0 || ft_strlen(cmd[0]) == 0)
-// 		return ;
-// 	pid = fork();
-// 	if (pid == -1)
-// 		fatal_error("failed to create a child process!");
-// 	if (pid == 0)
-// 	{		
-// 		path = get_path(cmd[0], find_path_env());
-// 		if (fd_in != 0 && fd_out != 1)
-// 		{
-// 			dup2(fd_out, 1);
-// 			dup2(fd_in, 0);
-// 			close (fd_out);
-// 			close (fd_in);
-// 		}
-// 		execve(path, cmd, g_data.env);
-// 	}
-// }
 
 // static void	wait_child()
 // {
@@ -93,10 +70,8 @@
 // 		wait_return = wait(NULL);
 // }
 
-// static int	check_cmd(char **cmd, int *in_out)
+// static int	check_cmd(char **cmd)
 // {
-// 	in_out[0] = 0;
-// 	in_out[1] = 1;
 // 	if (get_path(cmd[0], find_path_env()) == NULL)
 // 	{
 // 		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd[0]));
@@ -106,14 +81,49 @@
 // 		return (1);
 // }
 
+// static char	**make_envp()
+// {
+// 	char	**envp;
+
+// 	envp = NULL;
+// 	return (envp);
+// }
+
+// void	execute_command(t_cmd *cmd)
+// {
+// 	pid_t	pid;
+// 	char	*path;
+// 	char	**envp;
+
+// 	if (cmd->infile < 0 || cmd->outfile < 0)
+// 		return ;
+// 	pid = fork();
+// 	if (pid == -1)
+// 		fatal_error("failed to create a child process!");
+// 	envp = make_envp();
+// 	if (pid == 0)
+// 	{		
+// 		path = get_path(cmd[0], find_path_env());
+// 		if (cmd->infile != 0 && cmd->outfile != 1)
+// 		{
+// 			dup2(cmd->outfile, 1);
+// 			dup2(cmd->infile, 0);
+// 			close (cmd->outfile);
+// 			close (cmd->infile);
+// 		}
+// 		execve(path, cmd, envp);
+// 	}
+// }
+
 void	execute(t_cmd *cmds, int pipes_count)
 {
 	int	i;
 
 	i = 0;
-	while ((cmds)[i] != NULL)
+	while (i <= pipes_count)
 	{
-		printf("cmd%d:%s\n", i, cmds[i].cmd_args[0]);
+		printf("cmd%d:%s %d|%d\n", i, cmds[i].cmd_args[0], cmds[i].infile, cmds[i].outfile);
+		//execute_command(cmds[i]);
 		i++;
 	}
 }
