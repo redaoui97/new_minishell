@@ -1,2 +1,6 @@
 remove unused functions from header file 
 remove unused functions source code
+
+I still haven't tested the new open pipe function, I need to change the loop
+what it does now is write and read from the same pipe
+make it so that it reads from previous pipe and writes into next pipe
