@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:12 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/10 01:13:05 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:44:47 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_cmd	*setup_cmds(t_token **tokens, int *pipes)
 	t_cmd	*cmds;
 	int		status;
 	
-	printf("test");
 	cmds = creat_cmds(tokens, &*pipes);
 	check_file_direcitons(&cmds, *pipes);
 	rm_redirecitons(&cmds, *pipes);

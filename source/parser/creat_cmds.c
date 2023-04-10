@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:35 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/10 01:04:25 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 01:32:08 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_token **new_head, int i, t_token **tmp)
 {
 	rm_token(&((*tmp)->next));
 	(*cmds)[i].tokens_cmd = *new_head;
-	(*cmds)[i].infile = 0;
-	(*cmds)[i].outfile = 1;
+	(*cmds)[i].infile = -1;
+	(*cmds)[i].outfile = -1;
 	(*cmds)[i].exec = 0;
 	(*cmds)[i].cmd_args = NULL;
 	(*cmds)[i].cmd_path = NULL;
@@ -49,8 +49,8 @@ static t_cmd	*creat_cmds_utils(t_token **tokens, t_cmd **cmds)
 	}
 	new_head->prev = NULL;
 	(*cmds)[i].tokens_cmd = new_head;
-	(*cmds)[i].infile = 0;
-	(*cmds)[i].outfile = 1;
+	(*cmds)[i].infile = -1;
+	(*cmds)[i].outfile = -1;
 	(*cmds)[i].cmd_args = NULL;
 	(*cmds)[i].cmd_path = NULL;
 	(*cmds)[i].exec = 0;
@@ -70,8 +70,8 @@ t_cmd	*creat_cmds(t_token **tokens, int *pipes)
 	if (*pipes == 0)
 	{
 		cmds[i].tokens_cmd = *tokens;
-		cmds[i].infile = 0;
-		cmds[i].outfile = 1;
+		cmds[i].infile = -1;
+		cmds[i].outfile = -1;
 		cmds[i].cmd_args = NULL;
 		cmds[i].cmd_path = NULL;
 		cmds[i].exec = 0;

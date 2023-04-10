@@ -6,69 +6,64 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 01:08:09 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 03:23:27 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// static char*	find_path_env()
-// {
-// 	char		*path;
-// 	t_env_elem	*ptr;
-// 	int		i;
+static char	*find_path_env()
+{
+	t_list	*ptr;
 
-// 	path = NULL;
-// 	i = 0;
-// 	// ptr = g_data.ev->head;
-// 	// while (i < g_data.ev->size)
-// 	// {
-// 	// 	if (!ft_strcmp(ptr->key, "PATH"))
-// 	// 		return (ptr->value);
-// 	// 	ptr = ptr->next;
-// 	// 	i++;
-// 	// }
-// 	return (path);
-// }
+	ptr = g_gen.env;
+	while (ptr)
+	{
+		if (ft_strncmp("PATH", (char *)ptr->content, 4) == 0)
+			return ((char *)ptr->content + 5);
+		ptr = ptr->next;
+	}
+	return (NULL);
+}
 
-// /*gets the right path from a $PATH env*/
-// char	*get_path(char *cmd, char *env_path)
-// {
-// 	char	**paths;
-// 	char	*path;
-// 	int		i;
+/*gets the right path from a $PATH env*/
+char	*get_path(char *cmd, char *env_path)
+{
+	char	**paths;
+	char	*path;
+	int		i;
 
-// 	if (access(cmd, X_OK) == 0)
-// 		return (cmd);
-// 	paths = ft_split_adjusted(env_path, ':');
-// 	i = 0;
-// 	while (paths[i])
-// 	{
-// 		path = ft_strjoin_adjusted(paths[i], "/");
-// 		path = ft_strjoin_adjusted(path, cmd);
-// 		if (access(path, X_OK) == 0)
-// 		{
-// 			while (paths[++i])
-// 				free (paths[i]);
-// 			free (paths);
-// 			return (path);
-// 		}
-// 		free (path);
-// 		i++;
-// 	}
-// 	free (paths);
-// 	return (NULL);
-// }
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
+	paths = ft_split_adjusted(env_path, ':');
+	i = 0;
+	while (paths[i])
+	{
+		path = ft_strjoin_adjusted(paths[i], "/");
+		path = ft_strjoin_adjusted(path, cmd);
+		if (access(path, X_OK) == 0)
+		{
+			while (paths[++i])
+				free (paths[i]);
+			free (paths);
+			return (path);
+		}
+		free (path);
+		i++;
+	}
+	free (paths);
+	return (NULL);
+}
 
 
-// static void	wait_child()
-// {
-// 	int	wait_return;
+static void	wait_child()
+{
+	int	wait_return;
 
-// 	wait_return = wait (NULL);
-// 	while (wait_return > 0)
-// 		wait_return = wait(NULL);
-// }
+	wait_return = wait (NULL);
+	while (wait_return > 0)
+		wait_return = wait(NULL);
+}
 
 // static int	check_cmd(char **cmd)
 // {
@@ -80,50 +75,75 @@
 // 	else
 // 		return (1);
 // }
+static int	get_envp_size()
+{
+	int	size;
 
-// static char	**make_envp()
-// {
-// 	char	**envp;
+	size = 0;
+	t_list	*ptr;
 
-// 	envp = NULL;
-// 	return (envp);
-// }
+	ptr = g_gen.env;
+	while (ptr)
+	{
+		size++;
+		ptr = ptr->next;
+	}
+	return (size);
+}
 
-// void	execute_command(t_cmd *cmd)
-// {
-// 	pid_t	pid;
-// 	char	*path;
-// 	char	**envp;
+static char	**make_envp()
+{
+	char	**envp;
+	t_list	*ptr;
+	int		i;
 
-// 	if (cmd->infile < 0 || cmd->outfile < 0)
-// 		return ;
-// 	pid = fork();
-// 	if (pid == -1)
-// 		fatal_error("failed to create a child process!");
-// 	envp = make_envp();
-// 	if (pid == 0)
-// 	{		
-// 		path = get_path(cmd[0], find_path_env());
-// 		if (cmd->infile != 0 && cmd->outfile != 1)
-// 		{
-// 			dup2(cmd->outfile, 1);
-// 			dup2(cmd->infile, 0);
-// 			close (cmd->outfile);
-// 			close (cmd->infile);
-// 		}
-// 		execve(path, cmd, envp);
-// 	}
-// }
+	ptr = g_gen.env;
+	i = 0;
+	envp = (char **)malloc (sizeof(char *) * (get_envp_size() + 1));
+	while (ptr)
+	{
+		envp[i++] = (char *)ptr->content;
+		ptr = ptr->next;
+	}
+	envp[i] = NULL;
+	return (envp);
+}	
+
+void	execute_command(t_cmd *cmd)
+{
+	pid_t	pid;
+	char	*path;
+	char	**envp;
+
+	pid = fork();
+	if (pid == -1)
+		return ((void)simple_error("failed to create a child process!"));
+	envp = make_envp();
+	if (pid == 0)
+	{		
+		path = get_path(cmd->cmd_args[0], find_path_env());
+		if (cmd->infile != -1 && cmd->outfile != -1)
+		{
+			dup2(cmd->outfile, 1);
+			dup2(cmd->infile, 0);
+			close (cmd->outfile);
+			close (cmd->infile);
+		}
+		execve(path, cmd->cmd_args, envp);
+	}
+}
 
 void	execute(t_cmd *cmds, int pipes_count)
 {
 	int	i;
+	t_list	*ptr;
+	char	**envp;
 
 	i = 0;
 	while (i <= pipes_count)
 	{
-		printf("cmd%d:%s %d|%d\n", i, cmds[i].cmd_args[0], cmds[i].infile, cmds[i].outfile);
-		//execute_command(cmds[i]);
+		execute_command(&cmds[i]);
+		wait_child();
 		i++;
 	}
 }

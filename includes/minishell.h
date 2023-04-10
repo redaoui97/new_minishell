@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 23:38:18 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:09:38 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,5 +233,10 @@ char		*ft_itoa1(long long n);
 int			to_num(char c);
 void		suite9(char *str);
 /*Exec functions*/
-void	execute(t_cmd *cmds, int pipes_count);
+void		execute(t_cmd *cmds, int pipes_count);
+int			simple_error(char *msg);
+/*utils functions*/
+char		*ft_strjoin_adjusted(char *s1, char *s2);
+char		*ft_substr_adjusted(char const *s, unsigned int start, size_t len);
+char		**ft_split_adjusted(char const *s, char c);
 #endif
