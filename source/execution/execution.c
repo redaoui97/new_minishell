@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 03:23:27 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 05:02:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,24 @@ void	execute_command(t_cmd *cmd)
 	}
 }
 
+static void	set_pipes(t_cmd *cmd, int **pipes)
+{
+	
+}
+
 void	execute(t_cmd *cmds, int pipes_count)
 {
-	int	i;
+	int		i;
 	t_list	*ptr;
 	char	**envp;
-
+	int		pipes[pipes_count][2];
+	
 	i = 0;
 	while (i <= pipes_count)
 	{
+		set_pipes(&cmds[i], &pipes[i]);
 		execute_command(&cmds[i]);
+		//close_pipes();
 		wait_child();
 		i++;
 	}
