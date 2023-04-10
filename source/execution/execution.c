@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 07:27:18 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:28:31 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	execute_command(t_cmd *cmd)
 	char	*path;
 	char	**envp;
 
-	printf("infile:%d|outfile:%d\n",cmd->infile, cmd->outfile);
+	//printf("infile:%d|outfile:%d\n",cmd->infile, cmd->outfile);
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"));
@@ -138,56 +138,61 @@ void	execute_command(t_cmd *cmd)
 	}
 }
 
-static void	set_pipes(t_cmd *cmd, int (*pipes)[2], int status_in, int status_out)
+static void	set_pipes(t_cmd *cmd, int (*pipe_in)[2], int (*pipe_out)[2])
 {
-	if (pipe(*pipes) == -1)
-		simple_error("failed to create pipe!\n");
-	printf("%d:%d\n", (*pipes)[0], (*pipes)[1]);
-	if (cmd->infile == -1 && status_out)
-		cmd->infile = (*pipes)[0];
-	if (cmd->outfile == -1 && status_out)
-		cmd->outfile = (*pipes)[1];
+	//printf("%d:%d\n", (*pipes)[0], (*pipes)[1]);
+	if (cmd->infile == -1 && *pipe_in)
+		cmd->infile = (*pipe_in)[0];
+	if (cmd->outfile == -1 && *pipe_out)
+		cmd->outfile = (*pipe_out)[1];
 }
 
 static void	close_files(t_cmd *cmd)
 {
-	//add error protection for close 
 	if (cmd->infile != -1)
 		close (cmd->infile);
 	if (cmd->outfile != -1)
 		close (cmd->outfile);
-	//close pipes
 }
-// static int	open_pipes(int **pipes, int num)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < num)
-// 	{
-// 		if (pipe(pipes[i]) == -1)
-// 		{
-// 			simple_error("failed to create pipe!\n");
-// 			return (EXIT_FAILURE);
-// 		}	
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
 
 int open_pipes(int (*pipes)[2], int pipes_count) 
 {
-    for (int i = 0; i < pipes_count; i++) {
-        if (pipe(pipes[i]) == -1) {
-            perror("Failed to create pipe");
-            // Close the previously created pipes
-            for (int j = 0; j < i; j++) {
-                close(pipes[j][0]); // Close read end of the previously created pipes
-                close(pipes[j][1]); // Close write end of the previously created pipes
-            }
-            return;
-        }
-    }
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < pipes_count) 
+	{
+		j = 0;
+		if (pipe(pipes[i]) == -1) 
+		{
+			simple_error("Failed to create pipe");
+            while (j < i) 
+			{
+				close(pipes[j][0]);
+				close(pipes[j][1]);
+				j++;
+			}
+			return (EXIT_FAILURE);
+		}
+		i++;
+	}
+	return (EXIT_SUCCESS);
 }
+
+static void	close_pipes(int (*pipes)[2], int pipes_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipes_count)
+	{
+		close(pipes[i][0]);
+		close(pipes[i][1]);
+		i++;
+	}
+}
+
 void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
@@ -196,14 +201,20 @@ void	execute(t_cmd *cmds, int pipes_count)
 	int		pipes[pipes_count][2];
 	
 	i = 0;
-	if (open_pipes(&pipes, pipes_count) == EXIT_FAILURE)
+	if (open_pipes(pipes, pipes_count) == EXIT_FAILURE)
 		return ;
 	while (i <= pipes_count)
 	{
-		//set_pipes(&cmds[i], &pipes[i], i, i - pipes_count);
+		if (!i)
+			set_pipes(&cmds[i], NULL, &pipes[i]);
+		else if (i - pipes_count == 0)
+			set_pipes(&cmds[i], &pipes[i - 1], NULL);
+		else
+			set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
 		execute_command(&cmds[i]);
-		close_files(&cmds[i]);
 		wait_child();
+		close_files(&cmds[i]);
 		i++;
 	}
+	close_pipes(pipes, pipes_count);
 }

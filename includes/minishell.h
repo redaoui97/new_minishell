@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/10 02:09:38 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:28:25 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,6 @@ void		assign_pipes(int **pipes, t_cmd **cmds, int pipes_num);
 int			count_pipes(t_token *tokens);
 void		fail_to_generat_pipes(int **pipes, int i);
 void		free_pipes(int **pipes, int pipes_num);
-void		close_pipes(int **pipes, int count);
 int			**creat_pipes(int pipes_num);
 char		*rm_quotes(char *str, char c);
 void		rm_quotes_tokens(t_token **tokens);
