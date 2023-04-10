@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 18:28:31 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:42:46 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,12 +205,15 @@ void	execute(t_cmd *cmds, int pipes_count)
 		return ;
 	while (i <= pipes_count)
 	{
-		if (!i)
-			set_pipes(&cmds[i], NULL, &pipes[i]);
-		else if (i - pipes_count == 0)
-			set_pipes(&cmds[i], &pipes[i - 1], NULL);
-		else
-			set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
+		if (pipes_count)
+		{		
+			if (!i)
+				set_pipes(&cmds[i], NULL, &pipes[i]);
+			else if (i - pipes_count == 0)
+				set_pipes(&cmds[i], &pipes[i - 1], NULL);
+			else
+				set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
+		}
 		execute_command(&cmds[i]);
 		wait_child();
 		close_files(&cmds[i]);
