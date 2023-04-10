@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 18:42:46 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/10 23:28:09 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*get_path(char *cmd, char *env_path)
 	return (NULL);
 }
 
-
+//needs to be changed to store last exit status and skip cmds after followed execution
 static void	wait_child()
 {
 	int	wait_return;
@@ -64,16 +64,19 @@ static void	wait_child()
 		wait_return = wait(NULL);
 }
 
-// static int	check_cmd(char **cmd)
-// {
-// 	if (get_path(cmd[0], find_path_env()) == NULL)
-// 	{
-// 		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd[0]));
-// 		return (0);
-// 	}
-// 	else
-// 		return (1);
-// }
+static int	check_cmd(char *cmd)
+{
+	if (get_path(cmd, find_path_env()) == NULL)
+	{
+		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd));
+		return (EXIT_FAILURE);
+	}
+	else
+	{
+		return (EXIT_SUCCESS);
+	}
+}
+
 static int	get_envp_size()
 {
 	int	size;
@@ -114,7 +117,8 @@ void	execute_command(t_cmd *cmd)
 	char	*path;
 	char	**envp;
 
-	//printf("infile:%d|outfile:%d\n",cmd->infile, cmd->outfile);
+	if (check_cmd(cmd->cmd_args[0]) == EXIT_FAILURE)
+		return ;
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"));
@@ -140,7 +144,6 @@ void	execute_command(t_cmd *cmd)
 
 static void	set_pipes(t_cmd *cmd, int (*pipe_in)[2], int (*pipe_out)[2])
 {
-	//printf("%d:%d\n", (*pipes)[0], (*pipes)[1]);
 	if (cmd->infile == -1 && *pipe_in)
 		cmd->infile = (*pipe_in)[0];
 	if (cmd->outfile == -1 && *pipe_out)
@@ -206,10 +209,10 @@ void	execute(t_cmd *cmds, int pipes_count)
 	while (i <= pipes_count)
 	{
 		if (pipes_count)
-		{		
-			if (!i)
+		{
+			if (i == 0)
 				set_pipes(&cmds[i], NULL, &pipes[i]);
-			else if (i - pipes_count == 0)
+			else if (i == pipes_count)
 				set_pipes(&cmds[i], &pipes[i - 1], NULL);
 			else
 				set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
@@ -219,5 +222,6 @@ void	execute(t_cmd *cmds, int pipes_count)
 		close_files(&cmds[i]);
 		i++;
 	}
-	close_pipes(pipes, pipes_count);
+	//some pipes are closed some are not 
+	//close_pipes(pipes, pipes_count);
 }
