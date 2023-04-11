@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:43 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/11 01:06:20 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 01:30:25 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,19 @@ void	rm_token(t_token **tokens)
 void	rm_spaces(t_token **tokens)
 {
 	t_token	*tmp;
-	int		i;
-
-	i = 0;
-	while ((*tokens) != NULL && (*tokens)->type == SPAACE)
-	{
-		rm_token(tokens);
-		i++;
-	}
+	
 	tmp = *tokens;
 	while (tmp != NULL)
 	{
 		if (tmp->type == SPAACE)
 		{
+			t_token *next = tmp->next;
 			rm_token(&tmp);
-			i++;
+			tmp = next;
 		}
-		tmp = tmp->next;
+		else
+		{
+			tmp = tmp->next;
+		}
 	}
 }

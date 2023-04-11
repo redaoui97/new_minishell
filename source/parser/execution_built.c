@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:42 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:07:59 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 01:25:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 // 	if (cmd == NULL)
 // 		return (0);
 // 	built_in = str_to_lower(cmd);
-// 	if ((ft_strcmp(built_in, "echo") && ft_strcmp(built_in, "cd") \
-// 	&& ft_strcmp(built_in, "env") && ft_strcmp(built_in, "exit") \
-// 	&& ft_strcmp(built_in, "export") && ft_strcmp(built_in, "pwd") \
+// 	if ((ft_strcmp(built_in, "echo") && ft_strcmp(built_in, "cd") 
+// 	&& ft_strcmp(built_in, "env") && ft_strcmp(built_in, "exit") 
+// 	&& ft_strcmp(built_in, "export") && ft_strcmp(built_in, "pwd") 
 // 	&& ft_strcmp(built_in, "unset")))
 // 	{
 // 		free(built_in);

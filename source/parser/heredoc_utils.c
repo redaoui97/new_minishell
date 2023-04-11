@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:31:20 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:08:55 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 01:26:13 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	ft_strcmp(char *s1, char *s2)
 
 void	write_to_fd(int fd, char *str)
 {
-	int	status;
-
-	status = write(fd, str, ft_strlen(str));
+	write(fd, str, ft_strlen(str));
 	write(fd, "\n", 1);
 }
 
