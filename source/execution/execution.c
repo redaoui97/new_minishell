@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 00:36:39 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 02:49:52 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,16 @@ static void	wait_child()
 		wait_return = wait(NULL);
 }
 
-static int	check_cmd(char *cmd)
+static int	check_cmd(t_cmd *cmd)
 {
-	if (get_path(cmd, find_path_env()) == NULL)
+	if (is_builtin(cmd))
 	{
-		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd));
+		exec_builtin(cmd);
+		return (EXIT_FAILURE);
+	}
+	if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
+	{
+		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd->cmd_args[0]));
 		return (EXIT_FAILURE);
 	}
 	else
@@ -117,7 +122,7 @@ void	execute_command(t_cmd *cmd)
 	char	*path;
 	char	**envp;
 
-	if (check_cmd(cmd->cmd_args[0]) == EXIT_FAILURE)
+	if (check_cmd(cmd) == EXIT_FAILURE)
 		return ;
 	pid = fork();
 	if (pid == -1)
