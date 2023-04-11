@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/10 02:26:33 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:38:42 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_token	*tokens;
-	t_cmd	*cmds;
 	
 	if (argc != 1)
 		return (1);
+	(void)argv;
 	init_minishell(envp);
 	while (1)
 	{

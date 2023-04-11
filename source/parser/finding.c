@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:02 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:08:42 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:30:11 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	*get_env_var(char *str, t_list *env)
 int	get_dollars(char *str)
 {
 	int	j;
-	int	count;
 
 	j = 0;
 	while (str[j] != '\0' && str[j] == '$')

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:23:50 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:15 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:32:25 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	open_file(t_token **tokens, int type)
 	int	status;
 
 	status = 0;
+	fd = -1;
 	if (type == GREAT)
 		fd = open((*tokens)->next->data, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	else if (type == LESS)

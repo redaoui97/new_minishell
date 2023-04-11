@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:11 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:04 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:30:53 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ int	heredoc_p(char *limiter, int *pipe_fd)
 
 int	heredoc(char *limiter, int *exit_status)
 {
-	char	*line;
 	int		pipe_fd[2];
 	int		pid;
-	int		status;
-	int		expand;
 
 	if (pipe(pipe_fd) < 0)
 	{

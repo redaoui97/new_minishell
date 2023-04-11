@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:47 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:56 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:35:41 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	clear_tokens(t_token **tokens)
 t_token	*tokenize(char *line)
 {
 	t_token	*tokens;
-	t_token	*tmp;
 
 	tokens = NULL;
 	get_token(&tokens, &line);

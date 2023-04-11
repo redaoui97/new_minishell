@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/10 18:28:25 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:28:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void		free_arr(char **arr);
 t_cmd		*creat_cmds(t_token **tokens, int *pipes);
 t_list		*env_create(char **envp);
 char		**set_env(char **envp);
-void		error_free(char *str, t_token *tokens);
+void		error_free(char *str);
 int			is_buit_in(char *cmd);
 void		exec_built_in(t_cmd *cmds, int i);
 void		close_cmd_files(t_cmd *cmds, int count);
@@ -214,7 +214,6 @@ int			is_other(t_token *c);
 int			syntax_err(t_token *token);
 int			is_other2(t_token *c);
 void		free_split(char **array);
-static int	check_pairs1(char *s);
 int			check_quotes(t_token *token);
 int			check_inside(t_token *tmp);
 int			check_newline(t_token *c);

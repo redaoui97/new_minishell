@@ -1,11 +1,9 @@
 remove unused functions from header file 
 remove unused functions source code
 
-check if command passed exists; return an error in case it doesn't
-fix the pipes compatibility issue mac
-fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
-program closes infile; outfile on each iteration meaning it even closes pipes if redirections don't exist; before another functions comes in later trying to close all pipes
-if there is a function that closes the infile/outfile; we could close the pipe fds whenver we process them in set_pipes
++fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
++program closes infile; outfile on each iteration meaning it even closes pipes if redirections don't exist; before another functions comes in later trying to close all pipes
++if there is a function that closes the infile/outfile; we could close the pipe fds whenver we process them in set_pipes
+++use after free issue after freeing space tokens; makes the commands not to be found
 
 Builtin commands
-set up later

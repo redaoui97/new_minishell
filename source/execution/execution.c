@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 23:28:09 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:36:39 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,24 +183,22 @@ int open_pipes(int (*pipes)[2], int pipes_count)
 	return (EXIT_SUCCESS);
 }
 
-static void	close_pipes(int (*pipes)[2], int pipes_count)
-{
-	int	i;
+// static void	close_pipes(int (*pipes)[2], int pipes_count)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < pipes_count)
-	{
-		close(pipes[i][0]);
-		close(pipes[i][1]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < pipes_count)
+// 	{
+// 		close(pipes[i][0]);
+// 		close(pipes[i][1]);
+// 		i++;
+// 	}
+// }
 
 void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
-	t_list	*ptr;
-	char	**envp;
 	int		pipes[pipes_count][2];
 	
 	i = 0;

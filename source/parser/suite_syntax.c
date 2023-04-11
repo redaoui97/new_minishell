@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:14 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:47 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:29:10 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	handle_spaces2(t_token *c)
 		tmp = tmp->next;
 	if ((tmp == NULL || is_other(tmp)))
 	{
-		error_free(tmp->data, tmp);
+		error_free(tmp->data);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:41 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 17:07:50 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:28:15 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char	**set_env(char **envp)
 	int		index;
 	char	**tmp;
 
-	if (envp)
+	index = 0;
+	if (*envp)
 	{
 		index = 0;
 		while (envp[index])

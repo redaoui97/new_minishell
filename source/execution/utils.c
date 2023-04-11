@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 02:05:01 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/10 02:07:39 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:37:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ char	*ft_substr_adjusted(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if ((int)start >= ft_strlen((char*)s))
+	if ((int)start >= (int)ft_strlen((char*)s))
 		return ((char *) ft_calloc(1, sizeof(char)));
-	if (ft_strlen((char*)s) <= (int)(start + len))
+	if ((int)ft_strlen((char*)s) <= (int)(start + len))
 		substr = malloc(sizeof(char) * (ft_strlen((char*)s) - start + 1));
 	else
 		substr = malloc(sizeof(char) * (len + 1));

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:51 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 00:29:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_quotes(t_token *token)
 		s = tmp->data;
 		if (!check_pairs1(s))
 		{
-			error_free(tmp->data, tmp);
+			error_free(tmp->data);
 			g_gen.exit_status = 258;
 			return (0);
 		}
@@ -73,7 +73,7 @@ int	check_inside(t_token *tmp)
 			if (!p2 || (p2 && p2->type != WORD)
 				|| !p1 || (p1 && p1->type != WORD))
 			{
-				error_free(tmp->data, tmp);
+				error_free(tmp->data);
 				return (0);
 			}
 		}
@@ -126,7 +126,7 @@ int	handle_spaces(t_token *c)
 	}
 	else if (is_other(tmp))
 	{
-		error_free(tmp->data, tmp);
+		error_free(tmp->data);
 		g_gen.exit_status = 258;
 		return (0);
 	}
