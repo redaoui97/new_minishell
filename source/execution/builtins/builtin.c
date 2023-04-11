@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 20:15:53 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 20:38:47 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int	is_builtin(t_cmd *cmds)
 	char	*cmd;
 
 	cmd = cmds->cmd_args[0];
-	if (ft_strcmp(cmd, "echo"))
+	if (!ft_strcmp(cmd, "echo"))
 		return (1);
-	if (ft_strcmp(cmd, "exit"))
+	if (!ft_strcmp(cmd, "exit"))
 		return (1);
-	if (ft_strcmp(cmd, "pwd"))
+	if (!ft_strcmp(cmd, "pwd"))
 		return (1);
-	if (ft_strcmp(cmd, "cd"))
+	if (!ft_strcmp(cmd, "cd"))
 		return (1);
-	if (ft_strcmp(cmd, "env"))
+	if (!ft_strcmp(cmd, "env"))
 		return (1);
-	if (ft_strcmp(cmd, "export"))
+	if (!ft_strcmp(cmd, "export"))
 		return (1);
-	if (ft_strcmp(cmd, "unset"))
+	if (!ft_strcmp(cmd, "unset"))
 		return (1);
 	return (0);
 }

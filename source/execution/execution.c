@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 20:08:03 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 20:41:16 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	check_cmd(t_cmd *cmd)
 		exec_builtin(cmd);
 		return (EXIT_FAILURE);
 	}
-	if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
+	else if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
 	{
 		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd->cmd_args[0]));
 		return (EXIT_FAILURE);
@@ -141,7 +141,6 @@ void	execute_command(t_cmd *cmd)
 		{
 			dup2(cmd->outfile, 1);
 			close (cmd->outfile);
-			
 		}
 		execve(path, cmd->cmd_args, envp);
 	}
