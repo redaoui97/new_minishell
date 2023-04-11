@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 07:43:58 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 08:22:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ static void	exec_builtin_func(t_cmd *cmds)
 	char	*cmd;
 
 		cmd = cmds->cmd_args[0];
-		if (ft_strcmp(cmd, "echo"))
+		if (!ft_strcmp(cmd, "echo"))
 			exec_echo(cmds);
-		// if (ft_strcmp(cmd, "exit"))
+		// if (!ft_strcmp(cmd, "exit"))
 		// 	exec_exit(cmds);
-		// if (ft_strcmp(cmd, "pwd"))
+		// if (!ft_strcmp(cmd, "pwd"))
 		// 	exec_pwd(cmds);
-		// if (ft_strcmp(cmd, "cd"))
+		// if (!ft_strcmp(cmd, "cd"))
 		// 	exec_cd(cmds);
-		// if (ft_strcmp(cmd, "env"))
+		// if (!ft_strcmp(cmd, "env"))
 		// 	exec_env(cmds);
-		// if (ft_strcmp(cmd, "export"))
-		// 	exec_export(cmd)s;
-		// if (ft_strcmp(cmd, "unset"))
+		// if (!ft_strcmp(cmd, "export"))
+		// 	exec_export(cmds)s;
+		// if (!ft_strcmp(cmd, "unset"))
 		// 	exec_unset(cmds);
 }
 

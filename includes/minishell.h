@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/11 07:48:50 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 08:04:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,6 @@ char		*ft_substr_adjusted(char const *s, unsigned int start, size_t len);
 char		**ft_split_adjusted(char const *s, char c);
 /*builtins functions*/
 int	is_builtin(t_cmd *cmd);
+int	exec_builtin(t_cmd *cmds);
 int	exec_echo(t_cmd *cmd);
 #endif

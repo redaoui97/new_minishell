@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 05:26:00 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 08:03:36 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static int	check_cmd(t_cmd *cmd)
 {
 	if (is_builtin(cmd))
 	{
-		printf("found builtin\n");
-		// exec_builtin(cmd);
-		// return (EXIT_FAILURE);
+		//printf("found builtin\n");
+		exec_builtin(cmd);
+		return (EXIT_FAILURE);
 	}
 	if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
 	{

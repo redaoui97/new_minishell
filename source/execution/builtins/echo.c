@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:20 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 07:49:00 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 08:24:29 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@ int	exec_echo(t_cmd *cmd)
 	int	param;
 
 	param = 0;
-	if (cmd->cmd_args[1] && ft_strcmp(cmd->cmd_args[1], "-n"))
+	(void)i;
+	if ((cmd->cmd_args)[1] && !ft_strcmp((cmd->cmd_args)[1], "-n"))
 	{
 		i = 2;
 		param = 1;
 	}
-	while (cmd->cmd_args[i])
-	{
-		printf("%s ", cmd->cmd_args[i]);
-		i++;
-	}
+	// while (cmd->cmd_args[i])
+	// {
+	// 	printf("%s ", cmd->cmd_args[i]);
+	// 	i++;
+	// }
+	printf("%s", (cmd->cmd_args)[2]);
 	if (!param)
 		printf("\n");
 	return (0);

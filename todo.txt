@@ -7,6 +7,7 @@ remove unused functions source code
 +heap buffer overflow issue on double quote queries
 +heap buffer overflow issue on quote queries
 +cmd args on quotes/double quotes aren't stored and mistaken for redirections
-
-
++free leaked data
++echo segv because last param isn't NULL
++broke the command exec look up the check_builtin part
 Builtin commands
