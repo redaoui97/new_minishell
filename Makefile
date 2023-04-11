@@ -6,11 +6,12 @@ INC  = -I ./includes
 HEADERS = includes/minishell.h
 LIBFT = includes/libft/libft.a
 Exec = $(addprefix execution/, execution error utils utils2)
-SRC =  $(addprefix parser/, cmd_creation cmd_managment cmd_utils_ cmd_utils creat_cmds enviroment error_free\
-execution_built execution_utils execution_utils2 execution finding_ finding\
+Builtins = $(addprefix execution/builtins/, builtin cd echo env exit export pwd unset)
+SRC =  $(addprefix parser/, cmd_creation cmd_managment cmd_utils_ cmd_utils creat_cmds enviroment\
+error_free execution_built execution_utils execution_utils2 execution finding_ finding\
 get_tokens__ get_tokens_ heredoc_utils heredoc_utils2 heredoc in_out_file_managment\
 in_out_utils joining list_manupulation pipe_asign pipe_management removing signals\
-suite_syntax syntax_analyzer token expantion suite_syntax) $(Exec) main
+suite_syntax syntax_analyzer token expantion suite_syntax) $(Exec) $(Builtins) main
 
 OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))
 

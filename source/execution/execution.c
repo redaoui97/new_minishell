@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 03:17:04 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 05:26:00 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ static void	wait_child()
 
 static int	check_cmd(t_cmd *cmd)
 {
-	// if (is_builtin(cmd))
-	// {
-	// 	exec_builtin(cmd);
-	// 	return (EXIT_FAILURE);
-	// }
+	if (is_builtin(cmd))
+	{
+		printf("found builtin\n");
+		// exec_builtin(cmd);
+		// return (EXIT_FAILURE);
+	}
 	if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
 	{
 		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd->cmd_args[0]));
