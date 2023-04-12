@@ -3,6 +3,11 @@ remove unused functions source code
 i-following cmd automatically kills the precedent process
 
 +free leaked data
+{
+	ft_split_adjusted leaks data when called by ft_split_adjusted
+	ft_split_adjusted leaks 100%
+	make_envp leaks when changing directory (could not be something else because when I only run ls I get the same leaks)
+}
 +still leaks even after freeing with exec_exit functions
 +go through builtin commands and save the return value
 +fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
@@ -12,3 +17,4 @@ i-following cmd automatically kills the precedent process
 ++heap buffer overflow issue on quote queries
 +++cmd args on quotes/double quotes aren't stored and mistaken for redirections
 ++segv when given empty line 
+++too many arguments on builtin functions
