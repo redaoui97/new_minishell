@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:49 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:08:17 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:29:47 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,7 @@ void	sig_handler(void)
 	signal(SIGQUIT, handler);
 	signal(SIGINT, handler);
 }
-
-
-/*Could delete this*/
-// int	run_cmd(t_cmd *cmds, int **pipes, int pipes_num, int *i)
-// {
-// 	int	pid;
-
-// 	pid = fork();
-// 	if (pid == -1)
-// 	{
-// 		perror("fork : ");
-// 		return (-1);
-// 	}
-// 	if (pid == 0)
-// 	{
-// 		sig_dfl();
-// 		execut(cmds, pipes, pipes_num, *i);
-// 	}
-// 	(*i)++;
-// 	return (pid);
-// }
-
-/*Could delete this*/
+//gotta delete 
 void	wait_all(int pid, int i, int pipes_num)
 {
 	int	status;

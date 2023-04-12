@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 07:12:52 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:59:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,26 @@ int	is_builtin(t_cmd *cmds)
 		return (1);
 	return (0);
 }
+
 static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 {
 	char	*cmd;
 
-		cmd = cmds->cmd_args[0];
-		if (!ft_strcmp(cmd, "echo"))
-			exec_echo(cmds);
-		if (!ft_strcmp(cmd, "exit"))
-			exec_exit(cmd_num);
-		if (!ft_strcmp(cmd, "pwd"))
-			exec_pwd();
-		if (!ft_strcmp(cmd, "cd"))
-			exec_cd(cmds);
-		if (!ft_strcmp(cmd, "env"))
-			exec_env();
-		if (!ft_strcmp(cmd, "export"))
-			exec_export(cmds);
-		if (!ft_strcmp(cmd, "unset"))
-			exec_unset(cmds);
+	cmd = cmds->cmd_args[0];
+	if (!ft_strcmp(cmd, "echo"))
+		exec_echo(cmds);
+	if (!ft_strcmp(cmd, "exit"))
+		exec_exit(cmd_num);
+	if (!ft_strcmp(cmd, "pwd"))
+		exec_pwd();
+	if (!ft_strcmp(cmd, "cd"))
+		exec_cd(cmds);
+	if (!ft_strcmp(cmd, "env"))
+		exec_env();
+	if (!ft_strcmp(cmd, "export"))
+		exec_export(cmds);
+	if (!ft_strcmp(cmd, "unset"))
+		exec_unset(cmds);
 }
 
 int	exec_builtin(t_cmd *cmds, int cmd_num)

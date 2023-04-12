@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:31:43 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:09:00 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:32:34 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	wait_heredoc(int *exit_status, int pid)
 	}
 }
 
+//here?
 void	handler1(int sig)
 {
 	if (sig == SIGINT)

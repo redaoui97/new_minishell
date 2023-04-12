@@ -6,13 +6,12 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:40 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 23:40:42 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:36:14 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*Could delete this*/
 int	count_pipes(t_token *tokens)
 {
 	int	i;
@@ -26,73 +25,3 @@ int	count_pipes(t_token *tokens)
 	}
 	return (i);
 }
-
-// void	fail_to_generat_pipes(int **pipes, int i)
-// {
-// 	int	j;
-
-// 	j = 0;
-// 	while (j < i)
-// 	{
-// 		free(pipes[j]);
-// 		j++;
-// 	}
-// 	free(pipes);
-// 	exit (3);
-// }
-
-// void	free_pipes(int **pipes, int pipes_num)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (pipes != NULL)
-// 	{
-// 		while (i < pipes_num)
-// 		{
-// 			free(pipes[i]);
-// 			i++;
-// 		}
-// 		free(pipes);
-// 	}
-// }
-
-// void	close_pipes(int **pipes, int count)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < count)
-// 	{
-// 		close(pipes[i][0]);
-// 		close(pipes[i][1]);
-// 		i++;
-// 	}
-// }
-
-// int	**creat_pipes(int pipes_num)
-// {
-// 	int	**pipes;
-// 	int	i;
-
-// 	i = 0;
-// 	pipes = malloc(sizeof(int *) * pipes_num);
-// 	if (pipes == NULL)
-// 		return (NULL);
-// 	while (i < pipes_num)
-// 	{
-// 		pipes[i] = malloc(sizeof(int) * 2);
-// 		if (pipes[i] == NULL)
-// 		{
-// 			fail_to_generat_pipes(pipes, i);
-// 			return (NULL);
-// 		}
-// 		if (pipe(pipes[i]) == -1)
-// 		{
-// 			perror("pipes limit");
-// 			return (NULL);
-// 		}
-// 		i++;
-// 	}
-// 	return (pipes);
-// }

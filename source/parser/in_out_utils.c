@@ -6,13 +6,12 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:23:50 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/11 00:32:25 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:33:19 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*Could delete this*/
 static void	open_file_err(t_token **tokens, int fd, int status)
 {
 	if ((*tokens)->next->old_data == NULL && (fd == -1 && status != 1))

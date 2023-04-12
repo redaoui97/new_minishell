@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 03:19:46 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:05:52 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
 {
 	struct stat	st;
 	
-    if (!(stat(*dir, &st) == 0 && S_ISDIR(st.st_mode)))
+	if (!(stat(*dir, &st) == 0 && S_ISDIR(st.st_mode)))
 	{
 		simple_error(ft_strjoin("no such file or directory: ", cmd_dir));
 		return (EXIT_FAILURE);
@@ -85,7 +85,7 @@ static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
 	return (change_dir(dir, cwd));
 }
 
-int		exec_cd(t_cmd *cmds)
+int	exec_cd(t_cmd *cmds)
 {
 	char	*dir;
 	char	*home;

@@ -23,3 +23,6 @@ i-following cmd automatically kills the precedent process
 ++exported envs should be marked for both adding and sorting
 ++if var exported already exists, replace it (if the new var doesn't have a value, keep old var)
 ++cd home if home env doesn't exist
+++error expanding env vars in single quotes : first character removed
+++unexpcted syntaxe error single/double quote near pipe
++++sometimes when I make a file with redirections, I can't access the file because a random char is added at the end 

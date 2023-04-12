@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 07:05:55 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 07:08:20 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:07:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	**make_exp_envp()
 	char	**envp;
 	t_list	*ptr;
 	int		i;
-
+	
 	ptr = g_gen.env;
 	i = 0;
 	envp = (char **)malloc (sizeof(char *) * (get_exp_envp_size() + 1));
@@ -95,8 +95,8 @@ void	print_sorted_args()
 	i = 0;
 	exp_env = make_exp_envp();
 	non_exp_env = make_non_exp_envp();
-	sortStrings(exp_env, get_exp_envp_size());
-	sortStrings(non_exp_env, get_non_exp_envp_size());
+	sort_string(exp_env, get_exp_envp_size());
+	sort_string(non_exp_env, get_non_exp_envp_size());
 	while (i < get_non_exp_envp_size())
 		print_processed_env(non_exp_env[i++]);
 	i = 0;

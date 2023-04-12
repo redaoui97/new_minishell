@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 09:18:55 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:47:51 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	execute_command(t_cmd *cmd, int cmd_num)
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"));
-	//change this; make_envp adds even those env vars that weren't exported; only use on export
 	envp = make_envp();
 	if (pid == 0)
 	{		

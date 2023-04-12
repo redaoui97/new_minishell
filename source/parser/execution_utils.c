@@ -6,25 +6,11 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:46 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:12:08 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:28:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*Could delete this*/
-// void	close_cmd_files(t_cmd *cmds, int count)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i <= count)
-// 	{
-// 		close(cmds[i].infile);
-// 		close(cmds[i].outfile);
-// 		i++;
-// 	}
-//}
 
 void	free_envp(void)
 {
@@ -42,7 +28,6 @@ void	free_envp(void)
 	}
 }
 
-/*Could delete this*/
 char	*str_to_lower(char *str)
 {
 	char	*new_str;

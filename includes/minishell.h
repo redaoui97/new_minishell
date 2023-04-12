@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 09:20:13 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:02:40 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,6 @@ char		**get_cmds(t_token *tokens);
 void		creat_cmd_args(t_cmd **cmds, int pipe);
 t_cmd		*setup_cmd(t_token **tokens, int *pipes);
 void		parse_cmds(t_token **toknes);
-char		*get_cmd_path(char *path, char *cmd);
-void		get_cmds_paht_err(t_cmd **cmds, int i);
-int			is_directory_check(t_cmd **cmds, int i);
-int			get_cmds_path(t_cmd **cmds, int pipes);
 void		cmd_not_found(char *cmd);
 int			is_directory(const char *path);
 void		is_a_dir(char *dir);
@@ -141,19 +137,13 @@ t_cmd		*creat_cmds(t_token **tokens, int *pipes);
 t_list		*env_create(char **envp);
 char		**set_env(char **envp);
 void		error_free(char *str);
-int			is_buit_in(char *cmd);
-void		exec_built_in(t_cmd *cmds, int i);
-void		close_cmd_files(t_cmd *cmds, int count);
 void		free_envp(void);
 char		*str_to_lower(char *str);
 void		free_cmds(t_cmd *cmds, int pipes_num);
 void		sig_ign(void);
 void		sig_dfl(void);
 void		sig_handler(void);
-int			run_cmd(t_cmd *cmds, int **pipes, int pipes_num, int *i);
 void		wait_all(int pid, int i, int pipes_num);
-void		execut(t_cmd *cmds, int **pipes, int pipes_num, int i);
-void		execution(t_cmd *cmds, int pipes_num);
 void		expander(t_token **tokens);
 void		expander_in_quotes_utils(t_token **token, t_list *env);
 void		expander_in_quotes(t_token **tokens);
@@ -196,11 +186,7 @@ void		add_at_end(t_token **tokens_head, t_token *token);
 void		add_token_last(t_token **token_head, \
 unsigned int type, char *data);
 char		**convert_to_array(t_list **env);
-void		assign_pipes(int **pipes, t_cmd **cmds, int pipes_num);
 int			count_pipes(t_token *tokens);
-void		fail_to_generat_pipes(int **pipes, int i);
-void		free_pipes(int **pipes, int pipes_num);
-int			**creat_pipes(int pipes_num);
 char		*rm_quotes(char *str, char c);
 void		rm_quotes_tokens(t_token **tokens);
 void		rm_token(t_token **tokens);
@@ -247,7 +233,7 @@ int			exec_cd(t_cmd *cmds);
 int			exec_env();
 int			exec_export(t_cmd *cmds);
 void		print_sorted_args();
-void		sortStrings(char **strings, int n);
+void		sort_string(char **strings, int n);
 void		print_processed_env(char *env);
 int			exec_unset(t_cmd *cmds);
 void		remove_env_var(t_list *ptr);

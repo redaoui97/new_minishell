@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 08:59:46 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:09:29 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,28 @@ static int	add_exp_env(char *new_env)
 	return (EXIT_SUCCESS);
 }
 
-void	sortStrings(char **strings, int n)
+void	sort_string(char **strings, int n)
 {
-    char	*temp;
-	int 	i;
+	char	*temp;
+	int		i;
 	int		j;
 	
 	i = 0;
-    while (i < n-1)
+	while (i < (n - 1))
 	{
-        j = 0;
-        while (j < n-i-1) 
+		j = 0;
+		while (j < (n - i - 1)) 
 		{
-            if (strcmp(strings[j], strings[j+1]) > 0) 
+			if (strcmp(strings[j], strings[j+1]) > 0) 
 			{
-                temp = strings[j];
-                strings[j] = strings[j+1];
-                strings[j+1] = temp;
-            }
-            j++;
-        }
-        i++;
-    }
+				temp = strings[j];
+				strings[j] = strings[j+1];
+				strings[j+1] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	print_processed_env(char *env)

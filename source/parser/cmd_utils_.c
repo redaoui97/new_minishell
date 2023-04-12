@@ -6,13 +6,12 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:23 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:07:35 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:24:55 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*Could delete this*/
 void	cmd_not_found(char *cmd)
 {
 	char	*built_in;
