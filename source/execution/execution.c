@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 23:12:43 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 06:21:08 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ char	*get_path(char *cmd, char *env_path)
 		path = ft_strjoin_adjusted(path, cmd);
 		if (access(path, X_OK) == 0)
 		{
-			while (paths[++i])
-				free (paths[i]);
+			while (paths[i])
+				free (paths[++i]);
 			free (paths);
 			return (path);
 		}
 		free (path);
 		i++;
 	}
+	free (paths);
 	return (NULL);
 }
 
@@ -146,6 +147,7 @@ void	execute_command(t_cmd *cmd, int cmd_num)
 		}
 		execve(path, cmd->cmd_args, envp);
 	}
+	free (envp);
 }
 
 static void	set_pipes(t_cmd *cmd, int (*pipe_in)[2], int (*pipe_out)[2])

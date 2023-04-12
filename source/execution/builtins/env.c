@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:39 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 03:14:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 05:34:53 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	exec_env()
 	ptr = g_gen.env;
 	while (ptr)
 	{
-		printf("%s\n", (char *)ptr->content);
+		if (ptr->exp == 0)
+			printf("%s\n", (char *)ptr->content);
 		ptr = ptr->next;
 	}
 	return (EXIT_SUCCESS);

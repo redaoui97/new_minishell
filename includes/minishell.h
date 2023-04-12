@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 03:13:57 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 07:10:32 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,11 +238,15 @@ char		*ft_strjoin_adjusted(char *s1, char *s2);
 char		*ft_substr_adjusted(char const *s, unsigned int start, size_t len);
 char		**ft_split_adjusted(char const *s, char c);
 /*builtins functions*/
-int	is_builtin(t_cmd *cmd);
-int	exec_builtin(t_cmd *cmds, int cmd_num);
-int	exec_echo(t_cmd *cmd);
-int	exec_exit(int cmd_num);
-int	exec_pwd();
-int		exec_cd(t_cmd *cmds);
-int	exec_env();
+int			is_builtin(t_cmd *cmd);
+int			exec_builtin(t_cmd *cmds, int cmd_num);
+int			exec_echo(t_cmd *cmd);
+int			exec_exit(int cmd_num);
+int			exec_pwd();
+int			exec_cd(t_cmd *cmds);
+int			exec_env();
+int			exec_export(t_cmd *cmds);
+void		print_sorted_args();
+void		sortStrings(char **strings, int n);
+void		print_processed_env(char *env);
 #endif

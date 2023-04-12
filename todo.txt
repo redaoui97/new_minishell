@@ -19,3 +19,6 @@ i-following cmd automatically kills the precedent process
 +++cmd args on quotes/double quotes aren't stored and mistaken for redirections
 ++segv when given empty line 
 ++too many arguments on builtin functions
+++if pwd env doesn't exist at the start of the program, set it to / 
+++exported envs should be marked for both adding and sorting
+++if var exported already exists, replace it

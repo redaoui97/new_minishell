@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 02:05:01 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 00:37:56 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 05:51:45 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strjoin_adjusted(char *s1, char *s2)
 	while (s2[i])
 		str[s1_len++] = s2[i++];
 	str[s1_len] = '\0';
-	free((void *)s1);
+	free(s1);
 	s1 = NULL;
 	return (str);
 }

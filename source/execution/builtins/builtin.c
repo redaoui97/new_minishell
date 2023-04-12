@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 03:12:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 03:25:33 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 			exec_cd(cmds);
 		if (!ft_strcmp(cmd, "env"))
 			exec_env();
-		// if (!ft_strcmp(cmd, "export"))
-		// 	exec_export(cmds)s;
+		if (!ft_strcmp(cmd, "export"))
+			exec_export(cmds);
 		// if (!ft_strcmp(cmd, "unset"))
 		// 	exec_unset(cmds);
 }

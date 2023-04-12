@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oufisaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 23:48:30 by oufisaou          #+#    #+#             */
-/*   Updated: 2021/11/18 18:24:41 by oufisaou         ###   ########.fr       */
+/*   Updated: 2023/04/12 05:23:47 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list	*ft_lstnew(void *content)
 	if (node == NULL)
 		return (NULL);
 	node->content = content;
+	node->exp = 0;
 	node->next = NULL;
 	return (node);
 }

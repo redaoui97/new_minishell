@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 07:06:06 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/06 13:54:23 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 05:23:08 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_list
 {
 	void			*content;
+	int				exp;
 	struct s_list	*next;
 }	t_list;
 
