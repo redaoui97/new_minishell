@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 02:05:01 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 05:51:45 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:51:24 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ char	*ft_strjoin_adjusted(char *s1, char *s2)
 /*allocates and returns pointer to a substring starting from a specific pos*/
 char	*ft_substr_adjusted(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	i;
+	char *substr;
+	size_t i;
 
 	i = 0;
 	if (!s)
 		return (NULL);
-	if ((int)start >= (int)ft_strlen((char*)s))
-		return ((char *) ft_calloc(1, sizeof(char)));
-	if ((int)ft_strlen((char*)s) <= (int)(start + len))
-		substr = malloc(sizeof(char) * (ft_strlen((char*)s) - start + 1));
+	if ((int)start >= (int)ft_strlen((char *)s))
+		return ((char *)ft_calloc(1, sizeof(char)));
+	if ((int)ft_strlen((char *)s) <= (int)(start + len))
+		substr = malloc(sizeof(char) * (ft_strlen((char *)s) - start + 1));
 	else
 		substr = malloc(sizeof(char) * (len + 1));
 	if (!substr)

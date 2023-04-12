@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:59 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:08:36 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:43 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ char	*get_var_utils(char **str, int *i, t_list *env)
 	char	*env_var;
 	char	*to_free;
 
-	while ((*str)[*i] != '\0' && (*str)[*i] != ' ' \
-	&& (*str)[*i] != '\t' \
-	&& (*str)[*i] != '\v' && (*str)[*i] != '\f' && \
-	(ft_isalnum((*str)[*i]) || (*str)[*i] == '?' || (*str)[*i] == '_'))
+	while ((*str)[*i] != '\0' && (*str)[*i] != ' ' && (*str)[*i] != '\t'
+		&& (*str)[*i] != '\v' && (*str)[*i] != '\f' &&
+			(ft_isalnum((*str)[*i]) || (*str)[*i] == '?' || (*str)[*i] == '_'))
 	{
 		if (*i == 1 && (ft_isdigit((*str)[*i]) || (*str)[*i] == '?'))
 		{
@@ -75,8 +74,8 @@ char	*get_var(char **str, char *final_quote, t_list *env)
 	char	*env_var;
 
 	i = 1;
-	if ((*str)[0] == '$' && (*str)[1] != '\0'
-	&& ((ft_isalnum((*str)[1]) || (*str)[1] == '?' || (*str)[1] == '_')))
+	if ((*str)[0] == '$' && (*str)[1] != '\0' && ((ft_isalnum((*str)[1])
+				|| (*str)[1] == '?' || (*str)[1] == '_')))
 	{
 		env_var = get_var_utils(str, &i, env);
 	}

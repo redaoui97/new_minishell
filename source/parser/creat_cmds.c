@@ -6,14 +6,16 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:35 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/10 01:32:08 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:29 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	creat_cmds_utils2(t_cmd **cmds, \
-t_token **new_head, int i, t_token **tmp)
+static void	creat_cmds_utils2(t_cmd **cmds,
+								t_token **new_head,
+								int i,
+								t_token **tmp)
 {
 	rm_token(&((*tmp)->next));
 	(*cmds)[i].tokens_cmd = *new_head;

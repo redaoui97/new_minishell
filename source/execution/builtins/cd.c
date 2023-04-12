@@ -6,13 +6,13 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 10:05:52 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:50:40 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static char	*get_home_path()
+static char	*get_home_path(void)
 {
 	char	*home;
 	t_list	*ptr;
@@ -28,7 +28,7 @@ static char	*get_home_path()
 	return (home);
 }
 
-static char	*get_cwd()
+static char	*get_cwd(void)
 {
 	t_list	*ptr;
 
@@ -53,12 +53,12 @@ static int	change_dir(char **dir, char *cwd)
 	{
 		if (!ft_strncmp("PWD", (char *)ptr->content, 3))
 		{
-			free (ptr->content);
+			free(ptr->content);
 			ptr->content = ft_strjoin("PWD=", *dir);
 		}
 		if (!ft_strncmp("OLDPWD", (char *)ptr->content, 6))
 		{
-			free (ptr->content);
+			free(ptr->content);
 			ptr->content = ft_strjoin("OLDPWD=", cwd);
 		}
 		ptr = ptr->next;
@@ -66,7 +66,7 @@ static int	change_dir(char **dir, char *cwd)
 	if (chdir(*dir) != 0)
 	{
 		simple_error(ft_strdup("Failed to change direcoty"));
-		free (*dir);
+		free(*dir);
 		return (EXIT_FAILURE);
 	}
 	free(*dir);
@@ -76,7 +76,7 @@ static int	change_dir(char **dir, char *cwd)
 static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
 {
 	struct stat	st;
-	
+
 	if (!(stat(*dir, &st) == 0 && S_ISDIR(st.st_mode)))
 	{
 		simple_error(ft_strjoin("no such file or directory: ", cmd_dir));
@@ -90,7 +90,7 @@ int	exec_cd(t_cmd *cmds)
 	char	*dir;
 	char	*home;
 	char	*cwd;
-	
+
 	home = get_home_path();
 	cwd = get_cwd();
 	if ((cmds->cmd_args)[1] == NULL)

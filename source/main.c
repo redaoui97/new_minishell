@@ -6,11 +6,12 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:42:52 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:53:32 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 t_gen	g_gen;
 
 char	**convert_to_array(t_list **env)
@@ -63,7 +64,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_token	*tokens;
-	
+
 	if (argc != 1)
 		return (1);
 	(void)argv;
@@ -74,7 +75,7 @@ int	main(int argc, char **argv, char **envp)
 		if (line != NULL)
 		{
 			printf("got in");
-			sleep (3);
+			sleep(3);
 			add_history(line);
 			tokens = tokenize(line);
 			free(line);

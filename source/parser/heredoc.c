@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:11 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/11 00:30:53 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	heredoc_p(char *limiter, int *pipe_fd)
 	}
 	if (line != NULL)
 		free(line);
-	exit (0);
+	exit(0);
 }
 
 int	heredoc(char *limiter, int *exit_status)
 {
-	int		pipe_fd[2];
-	int		pid;
+	int	pipe_fd[2];
+	int	pid;
 
 	if (pipe(pipe_fd) < 0)
 	{

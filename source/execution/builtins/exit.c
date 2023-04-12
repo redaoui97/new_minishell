@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:48 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 07:35:27 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:50:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec_exit(int cmd_num)
 		free_all(g_gen.env);
 		free(g_gen.pwd);
 		free_envp();
-		exit (0);
+		exit(0);
 	}
 	return (0);
 }

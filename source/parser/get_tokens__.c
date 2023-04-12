@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:05 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:08:46 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_sympol_less(t_token **tokens, char **str, int *here)
 void	get_token_utils(t_token **tokens, char **str, int *here, int *here2)
 {
 	t_token	*tmp;
-	int	i;
-	
+	int		i;
+
 	i = get_word(str, here, here2);
 	add_token_last(tokens, WORD, ft_substr(*str, 0, i));
 	*str = *str + i;

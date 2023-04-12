@@ -6,13 +6,13 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:39 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 10:06:15 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:50:52 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	exec_env()
+int	exec_env(void)
 {
 	t_list	*ptr;
 

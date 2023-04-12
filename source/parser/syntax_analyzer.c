@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 20:58:29 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:53:26 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	check_quotes(t_token *token)
 		if (token->type == QUOTE || token->type == DQUOTE)
 		{
 			if (token->data[0] == token->data[ft_strlen(token->data) - 1]
-				&& ft_strlen(token->data) != 1);
+				&& ft_strlen(token->data) != 1)
+				;
 			else
 				return (0);
 		}
@@ -44,7 +45,7 @@ int	check_pipe(t_token *token)
 			found = 1;
 		}
 		else if (token->type == WORD || token->type == QUOTE
-			|| token->type == DQUOTE || token->type == DOLLAR)
+				|| token->type == DQUOTE || token->type == DOLLAR)
 			found = 0;
 		token = token->next;
 	}
@@ -60,8 +61,8 @@ int	check_directions(t_token *token)
 	found = 0;
 	while (token != NULL)
 	{
-		if (token->type == GREAT || token->type == LESS
-			|| token->type == DGREAT || token->type == DLESS)
+		if (token->type == GREAT || token->type == LESS || token->type == DGREAT
+			|| token->type == DLESS)
 		{
 			if (found == 1)
 				return (0);
@@ -70,8 +71,8 @@ int	check_directions(t_token *token)
 		else if (token->type == PIPE && found == 1)
 			return (0);
 		else if (token->type == WORD || token->type == QUOTE
-			|| token->type == DQUOTE || token->type == DOLLAR)
-		found = 0;
+				|| token->type == DQUOTE || token->type == DOLLAR)
+			found = 0;
 		token = token->next;
 	}
 	if (found == 1)

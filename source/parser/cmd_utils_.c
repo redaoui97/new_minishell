@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:23 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 09:24:55 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:24 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	cmd_not_found(char *cmd)
 	char	*built_in;
 
 	built_in = str_to_lower(cmd);
-	if ((ft_strcmp(built_in, "echo") && ft_strcmp(built_in, "cd") \
-		&& ft_strcmp(built_in, "env") && ft_strcmp(built_in, "exit") \
-		&& ft_strcmp(built_in, "export") && ft_strcmp(built_in, "pwd") \
-		&& ft_strcmp(built_in, "unset")))
+	if ((ft_strcmp(built_in, "echo") && ft_strcmp(built_in, "cd")
+			&& ft_strcmp(built_in, "env") && ft_strcmp(built_in, "exit")
+			&& ft_strcmp(built_in, "export") && ft_strcmp(built_in, "pwd")
+			&& ft_strcmp(built_in, "unset")))
 		printf("minishell: %s: command not found\n", cmd);
 	free(built_in);
 }

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:49 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 09:29:47 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:38 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sig_handler(void)
 	signal(SIGQUIT, handler);
 	signal(SIGINT, handler);
 }
-//gotta delete 
+//gotta delete
 void	wait_all(int pid, int i, int pipes_num)
 {
 	int	status;

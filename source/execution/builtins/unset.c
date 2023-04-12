@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:07 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 08:57:47 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:51:09 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	find_eql(char *env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (env[i])
@@ -40,7 +40,7 @@ int	remove_env(char *env)
 			remove_env_var(ptr);
 			return (EXIT_SUCCESS);
 		}
-		free (env_name);
+		free(env_name);
 		ptr = ptr->next;
 	}
 	return (EXIT_SUCCESS);
@@ -48,7 +48,7 @@ int	remove_env(char *env)
 
 int	exec_unset(t_cmd *cmds)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while ((cmds->cmd_args)[i])

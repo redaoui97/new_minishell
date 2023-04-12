@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:23:50 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 09:33:19 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:53:03 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	open_file_err(t_token **tokens, int fd, int status)
 		perror("minishell");
 	else
 	{
-		if ((ft_strcmp((*tokens)->next->data, "") == 0) \
-		&& (*tokens)->next->old_data != NULL)
-			printf("minishell: %s: ambiguous redirect\n", \
-			(*tokens)->next->old_data);
+		if ((ft_strcmp((*tokens)->next->data, "") == 0)
+			&& (*tokens)->next->old_data != NULL)
+			printf("minishell: %s: ambiguous redirect\n",
+					(*tokens)->next->old_data);
 		else if ((*tokens)->next->old_data != NULL && status != 1)
 			perror("minishelll");
 	}

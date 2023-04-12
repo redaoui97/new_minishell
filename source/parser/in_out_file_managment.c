@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:14 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/09 17:12:48 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:53:01 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	check_con_redi(t_cmd **cmds, int i)
 {
 	if (((*cmds)[i].tokens_cmd) != NULL
 		&& ((((*cmds)[i].tokens_cmd))->type == LESS
-		|| ((*cmds)[i].tokens_cmd)->type == GREAT
-		|| (((*cmds)[i].tokens_cmd))->type == DLESS
-		|| ((*cmds)[i].tokens_cmd)->type == DGREAT))
+			|| ((*cmds)[i].tokens_cmd)->type == GREAT
+			|| (((*cmds)[i].tokens_cmd))->type == DLESS
+			|| ((*cmds)[i].tokens_cmd)->type == DGREAT))
 		return (1);
 	return (0);
 }
@@ -42,9 +42,9 @@ void	rm_redirecitons(t_cmd **cmds, int pipes)
 		tmp = ((*cmds)[i].tokens_cmd);
 		while (tmp != NULL)
 		{
-			if ((tmp->next != NULL) && (tmp->next->type == LESS \
-			|| tmp->next->type == GREAT \
-			|| tmp->next->type == DLESS || tmp->next->type == DGREAT))
+			if ((tmp->next != NULL) && (tmp->next->type == LESS
+					|| tmp->next->type == GREAT || tmp->next->type == DLESS
+					|| tmp->next->type == DGREAT))
 			{
 				rm_redi_utils(&(tmp->next), &(tmp->next));
 				continue ;

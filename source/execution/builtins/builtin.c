@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 09:59:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:50:21 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 int	exec_builtin(t_cmd *cmds, int cmd_num)
 {
 	int	std_dir[2];
-	
+
 	if (cmds->infile != -1)
 	{
 		std_dir[0] = dup(0);

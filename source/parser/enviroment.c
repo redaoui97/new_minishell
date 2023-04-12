@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:41 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/11 00:28:15 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:52:31 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list	*env_create(char **envp)
 		tmp = ft_lstnew(s);
 		ft_lstadd_back(&head, tmp);
 		index++;
-	}	
+	}
 	return (head);
 }
 

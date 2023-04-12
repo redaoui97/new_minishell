@@ -6,20 +6,19 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 07:05:55 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 10:07:57 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:50:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
 /*envs made with export*/
-static int	get_exp_envp_size()
+static int	get_exp_envp_size(void)
 {
-	int	size;
-
-	size = 0;
+	int		size;
 	t_list	*ptr;
 
+	size = 0;
 	ptr = g_gen.env;
 	while (ptr)
 	{
@@ -30,15 +29,15 @@ static int	get_exp_envp_size()
 	return (size);
 }
 
-static char	**make_exp_envp()
+static char	**make_exp_envp(void)
 {
 	char	**envp;
 	t_list	*ptr;
 	int		i;
-	
+
 	ptr = g_gen.env;
 	i = 0;
-	envp = (char **)malloc (sizeof(char *) * (get_exp_envp_size() + 1));
+	envp = (char **)malloc(sizeof(char *) * (get_exp_envp_size() + 1));
 	while (ptr)
 	{
 		if (ptr->exp)
@@ -50,13 +49,12 @@ static char	**make_exp_envp()
 }
 
 /*envs not made with export*/
-static int	get_non_exp_envp_size()
+static int	get_non_exp_envp_size(void)
 {
-	int	size;
-
-	size = 0;
+	int		size;
 	t_list	*ptr;
 
+	size = 0;
 	ptr = g_gen.env;
 	while (ptr)
 	{
@@ -67,7 +65,7 @@ static int	get_non_exp_envp_size()
 	return (size);
 }
 
-static char	**make_non_exp_envp()
+static char	**make_non_exp_envp(void)
 {
 	char	**envp;
 	t_list	*ptr;
@@ -75,7 +73,7 @@ static char	**make_non_exp_envp()
 
 	ptr = g_gen.env;
 	i = 0;
-	envp = (char **)malloc (sizeof(char *) * (get_non_exp_envp_size() + 1));
+	envp = (char **)malloc(sizeof(char *) * (get_non_exp_envp_size() + 1));
 	while (ptr)
 	{
 		if (ptr->exp == 0)
@@ -86,11 +84,11 @@ static char	**make_non_exp_envp()
 	return (envp);
 }
 
-void	print_sorted_args()
+void	print_sorted_args(void)
 {
-	char	**exp_env;
-	char	**non_exp_env;
-	int		i;
+	char **exp_env;
+	char **non_exp_env;
+	int i;
 
 	i = 0;
 	exp_env = make_exp_envp();
@@ -102,6 +100,6 @@ void	print_sorted_args()
 	i = 0;
 	while (i < get_exp_envp_size())
 		print_processed_env(exp_env[i++]);
-	free (exp_env);
-	free (non_exp_env);
+	free(exp_env);
+	free(non_exp_env);
 }
