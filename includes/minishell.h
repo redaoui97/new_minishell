@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 07:10:32 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 08:06:09 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,4 +249,6 @@ int			exec_export(t_cmd *cmds);
 void		print_sorted_args();
 void		sortStrings(char **strings, int n);
 void		print_processed_env(char *env);
+int			exec_unset(t_cmd *cmds);
+void		remove_env_var(t_list *ptr);
 #endif
