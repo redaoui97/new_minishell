@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 20:38:47 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 00:22:44 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	is_builtin(t_cmd *cmds)
 		return (1);
 	return (0);
 }
-static void	exec_builtin_func(t_cmd *cmds)
+static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 {
 	char	*cmd;
 
 		cmd = cmds->cmd_args[0];
 		if (!ft_strcmp(cmd, "echo"))
 			exec_echo(cmds);
-		// if (!ft_strcmp(cmd, "exit"))
-		// 	exec_exit(cmds);
-		// if (!ft_strcmp(cmd, "pwd"))
-		// 	exec_pwd(cmds);
+		if (!ft_strcmp(cmd, "exit"))
+			exec_exit(cmd_num);
+		if (!ft_strcmp(cmd, "pwd"))
+			exec_pwd(cmds);
 		// if (!ft_strcmp(cmd, "cd"))
 		// 	exec_cd(cmds);
 		// if (!ft_strcmp(cmd, "env"))
@@ -54,7 +54,7 @@ static void	exec_builtin_func(t_cmd *cmds)
 		// 	exec_unset(cmds);
 }
 
-int	exec_builtin(t_cmd *cmds)
+int	exec_builtin(t_cmd *cmds, int cmd_num)
 {
 	int	std_dir[2];
 	
@@ -68,7 +68,7 @@ int	exec_builtin(t_cmd *cmds)
 		std_dir[1] = dup(1);
 		dup2(cmds->outfile, 1);
 	}
-	exec_builtin_func(cmds);
+	exec_builtin_func(cmds, cmd_num);
 	if (cmds->infile != -1)
 	{
 		close(cmds->infile);

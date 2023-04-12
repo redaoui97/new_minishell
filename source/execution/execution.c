@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/11 20:41:16 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/11 23:12:43 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ static void	wait_child()
 		wait_return = wait(NULL);
 }
 
-static int	check_cmd(t_cmd *cmd)
+static int	check_cmd(t_cmd *cmd, int cmd_num)
 {
+	if (!cmd)
+		return (EXIT_FAILURE);
 	if (is_builtin(cmd))
 	{
-		exec_builtin(cmd);
+		exec_builtin(cmd, cmd_num);
 		return (EXIT_FAILURE);
 	}
 	else if (get_path(cmd->cmd_args[0], find_path_env()) == NULL)
@@ -116,13 +118,13 @@ static char	**make_envp()
 	return (envp);
 }	
 
-void	execute_command(t_cmd *cmd)
+void	execute_command(t_cmd *cmd, int cmd_num)
 {
 	pid_t	pid;
 	char	*path;
 	char	**envp;
 
-	if (check_cmd(cmd) == EXIT_FAILURE)
+	if (check_cmd(cmd, cmd_num) == EXIT_FAILURE)
 		return ;
 	pid = fork();
 	if (pid == -1)
@@ -219,7 +221,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 			else
 				set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
 		}
-		execute_command(&cmds[i]);
+		execute_command(&cmds[i], pipes_count + 1);
 		wait_child();
 		close_files(&cmds[i]);
 		i++;
