@@ -6,129 +6,84 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/11 00:29:30 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 20:58:29 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	check_pairs1(char *s)
-{
-	int	q;
-
-	q = 0;
-	while (*s)
-	{
-		if (q == 0 && (*s == '\"' || *s == '\''))
-		{
-			if (*(s++) == '\'')
-				q = 2;
-			else
-				q = 3;
-		}
-		while (*s && ((q == 3 && *s != '\"') || (q == 2 && *s != '\'')))
-			s++;
-		if ((q == 3 && *s == '\"') || (q == 2 && *s == '\''))
-			q = 0;
-		s++;
-	}
-	return (!q);
-}
-
 int	check_quotes(t_token *token)
 {
-	t_token	*tmp;
-	char	*s;
-
-	tmp = token;
-	while (tmp)
+	while (token != NULL)
 	{
-		s = tmp->data;
-		if (!check_pairs1(s))
+		if (token->type == QUOTE || token->type == DQUOTE)
 		{
-			error_free(tmp->data);
-			g_gen.exit_status = 258;
+			if (token->data[0] == token->data[ft_strlen(token->data) - 1]
+				&& ft_strlen(token->data) != 1);
+			else
+				return (0);
+		}
+		token = token->next;
+	}
+	return (1);
+}
+
+int	check_pipe(t_token *token)
+{
+	int	found;
+
+	found = 0;
+	if (token && token->type == PIPE)
+		return (0);
+	while (token != NULL)
+	{
+		if (token->type == PIPE)
+		{
+			if (found == 1)
+				return (0);
+			found = 1;
+		}
+		else if (token->type == WORD || token->type == QUOTE
+			|| token->type == DQUOTE || token->type == DOLLAR)
+			found = 0;
+		token = token->next;
+	}
+	if (found == 1)
+		return (0);
+	return (1);
+}
+
+int	check_directions(t_token *token)
+{
+	int	found;
+
+	found = 0;
+	while (token != NULL)
+	{
+		if (token->type == GREAT || token->type == LESS
+			|| token->type == DGREAT || token->type == DLESS)
+		{
+			if (found == 1)
+				return (0);
+			found = 1;
+		}
+		else if (token->type == PIPE && found == 1)
 			return (0);
-		}
-		tmp = tmp->next;
+		else if (token->type == WORD || token->type == QUOTE
+			|| token->type == DQUOTE || token->type == DOLLAR)
+		found = 0;
+		token = token->next;
 	}
-	return (1);
-}
-
-int	check_inside(t_token *tmp)
-{
-	t_token	*p1;
-	t_token	*p2;
-
-	while (tmp)
-	{
-		if (tmp->type == PIPE)
-		{
-			p1 = tmp->next;
-			p2 = tmp->prev;
-			while (p1 && p1->type == SPAACE)
-				p1 = p1->next;
-			while (p2 && p2->type == SPAACE)
-				p2 = p2->prev;
-			if (!p2 || (p2 && p2->type != WORD)
-				|| !p1 || (p1 && p1->type != WORD))
-			{
-				error_free(tmp->data);
-				return (0);
-			}
-		}
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-int	check_newline(t_token *c)
-{
-	t_token	*tmp;
-
-	tmp = NULL;
-	tmp = c;
-	while (tmp)
-	{
-		if ((tmp->type == LESS) || (tmp->type == GREAT) \
-		|| (tmp->type == DGREAT) || (tmp->type == DLESS))
-		{
-			tmp = tmp->next;
-			while (tmp && tmp->type == SPAACE)
-				tmp = tmp->next;
-			if ((tmp && is_other2(tmp)) || (tmp == NULL))
-			{
-				ft_putstr_fd("syntax error near unexpected", 2);
-				ft_putstr_fd("  token : 'newline'\n", 2);
-				g_gen.exit_status = 258;
-				return (0);
-			}
-		}
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-int	handle_spaces(t_token *c)
-{
-	t_token	*tmp;
-
-	tmp = NULL;
-	tmp = c;
-	while (tmp && tmp->type == SPAACE)
-		tmp = tmp->next;
-	if (tmp == NULL)
-	{
-		ft_putstr_fd("syntax error near unexpected", 2);
-		ft_putstr_fd("  token : 'newline'\n", 2);
-		g_gen.exit_status = 258;
+	if (found == 1)
 		return (0);
-	}
-	else if (is_other(tmp))
-	{
-		error_free(tmp->data);
-		g_gen.exit_status = 258;
-		return (0);
-	}
 	return (1);
+}
+
+int	syntax_err(t_token *token)
+{
+	if (check_quotes(token) && check_pipe(token) && check_directions(token))
+		return (1);
+	ft_putstr_fd("syntax error\n", 2);
+	g_gen.exit_status = 258;
+	return (0);
 }

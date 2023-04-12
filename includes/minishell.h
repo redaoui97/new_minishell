@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 10:02:40 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 20:34:05 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ char		*join_str(const char *s1, const char *s2);
 void		print_err_exp(char *next);
 void		print_err_uns(char *next);
 int			modify_env(char *pwd);
-int			ft_cd(char **path);
 int			change_env(char *p);
 int			ft_add_list(t_list **env_list, char *str);
 void		suite(char **str);
-void		ft_echo(char **str);
 int			set_flag(char *s);
 void		ft_env(char **str);
 void		suite7(char *str);
@@ -112,15 +110,12 @@ void		suite3(char *str);
 int			has_equal(char *str);
 void		suite4(char *str);
 void		print_export(t_list *env);
-int			ft_export(char **next);
-void		ft_pwd(void);
 int			commands(char **line);
 void		go_commands(char **line);
 int			small(char **p);
 int			small2(char **p);
 int			small3(char **pwd);
 int			s1(char *str);
-int			ft_unset(char **next);
 int			start_unset(t_list *env, char *next);
 long long	ft_atoll(const char *dest);
 char		**get_cmds(t_token *tokens);
@@ -147,7 +142,6 @@ void		wait_all(int pid, int i, int pipes_num);
 void		expander(t_token **tokens);
 void		expander_in_quotes_utils(t_token **token, t_list *env);
 void		expander_in_quotes(t_token **tokens);
-void		bubblesort(t_list **head, int count);
 t_list		*swap(t_list *ptr1, t_list *ptr2);
 int			len_list(t_list **list);
 void		ft_sort(t_gen *gen);

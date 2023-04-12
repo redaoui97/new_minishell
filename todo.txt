@@ -1,5 +1,4 @@
-remove unused functions from header file 
-remove unused functions source code
+
 i-following cmd automatically kills the precedent process
 
 +free leaked data
@@ -26,3 +25,4 @@ i-following cmd automatically kills the precedent process
 ++error expanding env vars in single quotes : first character removed
 ++unexpcted syntaxe error single/double quote near pipe
 +++sometimes when I make a file with redirections, I can't access the file because a random char is added at the end 
+norm : https://github.com/cacharle/c_formatter_42
