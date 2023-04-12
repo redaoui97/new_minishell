@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 20:34:05 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:37:33 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,15 +185,13 @@ char		*rm_quotes(char *str, char c);
 void		rm_quotes_tokens(t_token **tokens);
 void		rm_token(t_token **tokens);
 void		rm_spaces(t_token **tokens);
+int			check_pipe(t_token *token);
+int			check_directions(t_token *token);
+int			syntax_err(t_token *token);
 int			ctrld(void);
 void		handler(int sig);
 int			handle_signals(void);
 int			terminal_settings(void);
-int			handle_spaces2(t_token *c);
-int			is_other(t_token *c);
-int			syntax_err(t_token *token);
-int			is_other2(t_token *c);
-void		free_split(char **array);
 int			check_quotes(t_token *token);
 int			check_inside(t_token *tmp);
 int			check_newline(t_token *c);

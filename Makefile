@@ -11,7 +11,7 @@ SRC =  $(addprefix parser/, cmd_creation cmd_utils_ cmd_utils creat_cmds envirom
 error_free execution_utils execution_utils2 finding_ finding\
 get_tokens__ get_tokens_ heredoc_utils heredoc_utils2 heredoc in_out_file_managment\
 in_out_utils joining list_manupulation pipe_management removing signals\
-suite_syntax syntax_analyzer token expantion suite_syntax) $(Exec) $(Builtins) main
+syntax_analyzer token expantion) $(Exec) $(Builtins) main
 
 OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))
 

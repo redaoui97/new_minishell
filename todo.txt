@@ -8,7 +8,6 @@ i-following cmd automatically kills the precedent process
 	make_envp leaks when changing directory (could not be something else because when I only run ls I get the same leaks)
 	leaks when I change oldpwd
 }
-+still leaks even after freeing with exec_exit functions
 +go through builtin commands and save the return value
 +fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
 +program closes infile; outfile on each iteration meaning it even closes pipes if redirections don't exist; before another functions comes in later trying to close all pipes

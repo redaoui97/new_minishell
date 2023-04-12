@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/11 00:38:42 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 21:42:52 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("minishell> ");
 		if (line != NULL)
 		{
+			printf("got in");
+			sleep (3);
 			add_history(line);
 			tokens = tokenize(line);
 			free(line);
