@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 02:39:13 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 03:19:46 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	change_dir(char **dir, char *cwd)
 		if (!ft_strncmp("OLDPWD", (char *)ptr->content, 6))
 		{
 			free (ptr->content);
-			ptr->content = ft_strjoin("PWD=", cwd);
+			ptr->content = ft_strjoin("OLDPWD=", cwd);
 		}
 		ptr = ptr->next;
 	}
@@ -106,5 +106,5 @@ int		exec_cd(t_cmd *cmds)
 		dir = ft_strjoin(cwd, "/");
 		dir = ft_strjoin_adjusted(dir, (cmds->cmd_args)[1]);
 	}
-	return (cd_to_dir(&dir, (cmds->cmd_args)[1], cwd));
+	return (cd_to_dir(&dir, (cmds->cmd_args)[1], ft_strdup(cwd)));
 }

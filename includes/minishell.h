@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 02:08:31 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 03:13:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,4 +244,5 @@ int	exec_echo(t_cmd *cmd);
 int	exec_exit(int cmd_num);
 int	exec_pwd();
 int		exec_cd(t_cmd *cmds);
+int	exec_env();
 #endif

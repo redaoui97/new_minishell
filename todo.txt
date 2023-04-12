@@ -7,6 +7,7 @@ i-following cmd automatically kills the precedent process
 	ft_split_adjusted leaks data when called by ft_split_adjusted
 	ft_split_adjusted leaks 100%
 	make_envp leaks when changing directory (could not be something else because when I only run ls I get the same leaks)
+	leaks when I change oldpwd
 }
 +still leaks even after freeing with exec_exit functions
 +go through builtin commands and save the return value
