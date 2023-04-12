@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 00:22:44 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 00:30:09 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 		if (!ft_strcmp(cmd, "exit"))
 			exec_exit(cmd_num);
 		if (!ft_strcmp(cmd, "pwd"))
-			exec_pwd(cmds);
+			exec_pwd();
 		// if (!ft_strcmp(cmd, "cd"))
 		// 	exec_cd(cmds);
 		// if (!ft_strcmp(cmd, "env"))
