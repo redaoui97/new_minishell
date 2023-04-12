@@ -21,4 +21,5 @@ i-following cmd automatically kills the precedent process
 ++too many arguments on builtin functions
 ++if pwd env doesn't exist at the start of the program, set it to / 
 ++exported envs should be marked for both adding and sorting
-++if var exported already exists, replace it
+++if var exported already exists, replace it (if the new var doesn't have a value, keep old var)
+++cd home if home env doesn't exist

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 08:06:09 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 09:20:13 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,4 +251,12 @@ void		sortStrings(char **strings, int n);
 void		print_processed_env(char *env);
 int			exec_unset(t_cmd *cmds);
 void		remove_env_var(t_list *ptr);
+int			remove_env(char *env);
+char		*find_path_env();
+int			get_envp_size();
+char		**make_envp();
+void	close_files(t_cmd *cmd);
+void	set_pipes(t_cmd *cmd, int (*pipe_in)[2], int (*pipe_out)[2]);
+int 	open_pipes(int (*pipes)[2], int pipes_count);
+char	*get_path(char *cmd, char *env_path);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:07 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 08:19:06 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/12 08:57:47 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	find_eql(char *env)
 	return (i);
 }
 
-static int	remove_env(char *env)
+int	remove_env(char *env)
 {
 	char	*env_name;
 	t_list	*ptr;

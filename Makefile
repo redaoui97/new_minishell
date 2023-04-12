@@ -5,7 +5,7 @@ DIRBUILD = objdir
 INC  = -I ./includes
 HEADERS = includes/minishell.h
 LIBFT = includes/libft/libft.a
-Exec = $(addprefix execution/, execution error utils utils2)
+Exec = $(addprefix execution/, execution error utils utils2 execution_utils execution_utils2)
 Builtins = $(addprefix execution/builtins/, builtin cd echo env exit export export_utils pwd unset unset_utils)
 SRC =  $(addprefix parser/, cmd_creation cmd_managment cmd_utils_ cmd_utils creat_cmds enviroment\
 error_free execution_built execution_utils execution_utils2 execution finding_ finding\
