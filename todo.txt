@@ -19,3 +19,8 @@ i-following cmd automatically kills the precedent process
 +++++quotes/double quotes need a lot of testing
 
 ++check if double close in mac causes an issue
+
+++close files, need to close pipe for the precedent process to directory
+++return the pid from waitpid
+++
+++https://github.com/mharriso/school21-checklists/blob/master/ng_3_minishell.pdf

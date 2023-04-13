@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 11:31:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:19:48 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 
 
 //needs to be changed to store last exit status and skip cmds after followed execution
-static void	wait_child(int (*pids)[2], int size)
+static void	wait_child(int pids[2])
 {
-	int	wait_return;
-
-	(void)pids;
-	(void)size;
-	wait_return = wait (NULL);
-	while (wait_return > 0)
-		wait_return = wait(NULL);
-	
+	// wait_return = wait (NULL);
+	// while (wait_return > 0)
+	// 	wait_return = wait(NULL);
+	waitpid(pids[0],&(pids[1]), 0);
+	while (waitpid(-1, 0, 0) != -1)
+		;
 }
 
 static int	check_cmd(t_cmd *cmd, int cmd_num)
@@ -64,23 +62,24 @@ static int	execute_command(t_cmd *cmd, int cmd_num)
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"), -1);
-	envp = make_envp();
 	if (pid == 0)
 	{		
+		envp = make_envp();
 		path = get_path(cmd->cmd_args[0], find_path_env());
 		if (cmd->infile != -1)
 		{
 			dup2(cmd->infile, 0);
-			close (cmd->infile);
+			// close (cmd->infile);
 		}
 		if (cmd->outfile != -1)
 		{
 			dup2(cmd->outfile, 1);
-			close (cmd->outfile);
+			// close (cmd->outfile);
 		}
+
 		execve(path, cmd->cmd_args, envp);
 	}
-	free (envp);
+	// free (envp);
 	return (pid);
 }
 
@@ -101,7 +100,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
 	int		pipes[pipes_count][2];
-	int		pid_status[pipes_count + 1][2];
+	int		pid_status[2];
 	
 	i = 0;
 	(void)pid_status;
@@ -118,10 +117,10 @@ void	execute(t_cmd *cmds, int pipes_count)
 			else
 				set_pipes(&cmds[i], &pipes[i - 1], &pipes[i]);
 		}
-		pid_status[i][0] = execute_command(&cmds[i], pipes_count + 1);
+		pid_status[0] = execute_command(&cmds[i], pipes_count + 1);
 		close_files(&cmds[i]);
 		i++;
 	}
-	wait_child(pid_status, pipes_count + 1);
 	close_pipes(pipes, pipes_count);
+	wait_child(pid_status);
 }

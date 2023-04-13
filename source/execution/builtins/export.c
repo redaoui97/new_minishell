@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 12:06:57 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 21:37:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	check_exp_exists(char *exp)
 			printf("%s\n", (char *)ptr->content);
 		ptr = ptr->next;
 	}
+	//check this
+	return (0);
 }
 
 static int	add_exp_env(char *new_env)
