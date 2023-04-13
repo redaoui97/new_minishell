@@ -6,11 +6,31 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 07:24:15 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 12:06:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+static int	check_exp_exists(char *exp)
+{
+	int	i;
+	int	has_eql;
+	t_list	*ptr;
+
+	i = 0;
+	has_eql = 0;
+	while (exp[i])
+		if (exp[i] == '=')
+			has_eql++;
+	ptr = g_gen.env;
+	while (ptr)
+	{
+		if (ptr->exp == 0)
+			printf("%s\n", (char *)ptr->content);
+		ptr = ptr->next;
+	}
+}
 
 static int	add_exp_env(char *new_env)
 {
@@ -19,6 +39,8 @@ static int	add_exp_env(char *new_env)
 
 	if (new_env[0] == '=')
 		return (EXIT_FAILURE);
+	if (check_exp_exists(new_env))
+		return (EXIT_SUCCESS);
 	new = ft_strdup(new_env);
 	tmp = ft_lstnew(new);
 	tmp->exp = 1;

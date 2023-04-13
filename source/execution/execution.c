@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 10:24:17 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:31:49 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,13 @@
 //needs to be changed to store last exit status and skip cmds after followed execution
 static void	wait_child(int (*pids)[2], int size)
 {
-	// int	wait_return;
+	int	wait_return;
 
-	// wait_return = wait (NULL);
-	// while (wait_return > 0)
-	// 	wait_return = wait(NULL);
-	int i;
-
-    i = 0;
-    while (i < size)
-    {
-        waitpid(pids[i][0], &(pids[i][1]), 0);
-        if (i == size - 1)
-        {
-            while (i)
-            {
-                kill(pids[i][0], SIGTERM);
-                i--;
-            }
-            return;
-        }
-        i++;
-    }
+	(void)pids;
+	(void)size;
+	wait_return = wait (NULL);
+	while (wait_return > 0)
+		wait_return = wait(NULL);
 	
 }
 
