@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:11 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:52:59 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 06:48:14 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	heredoc(char *limiter, int *exit_status)
 		perror("");
 		return (-1);
 	}
-	sig_ign();
 	pid = fork();
 	if (pid == 0)
 	{

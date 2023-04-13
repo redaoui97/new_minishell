@@ -7,21 +7,15 @@ i-following cmd automatically kills the precedent process
 	ft_split_adjusted leaks 100%
 	make_envp leaks when changing directory (could not be something else because when I only run ls I get the same leaks)
 	leaks when I change oldpwd
+	leaks on cd
+	++when I kill a process (ping google.com) there is a leak on path/get_path/execution
+	+leaks on cd
+	
 }
-+go through builtin commands and save the return value
 +fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
-+program closes infile; outfile on each iteration meaning it even closes pipes if redirections don't exist; before another functions comes in later trying to close all pipes
-+if there is a function that closes the infile/outfile; we could close the pipe fds whenver we process them in set_pipes
-++heap buffer overflow issue on double quote queries
-++heap buffer overflow issue on quote queries
-+++cmd args on quotes/double quotes aren't stored and mistaken for redirections
-++segv when given empty line 
-++too many arguments on builtin functions
-++if pwd env doesn't exist at the start of the program, set it to / 
-++exported envs should be marked for both adding and sorting
 ++if var exported already exists, replace it (if the new var doesn't have a value, keep old var)
-++cd home if home env doesn't exist
 ++error expanding env vars in single quotes : first character removed
 ++unexpcted syntaxe error single/double quote near pipe
-+++sometimes when I make a file with redirections, I can't access the file because a random char is added at the end 
-norm : https://github.com/cacharle/c_formatter_42
++++++quotes/double quotes need a lot of testing
+
+++check if double close in mac causes an issue

@@ -6,34 +6,13 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:53:32 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 03:35:24 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 t_gen	g_gen;
-
-char	**convert_to_array(t_list **env)
-{
-	int		index;
-	int		size;
-	char	**arr;
-	t_list	*tmp;
-
-	size = len_list(env);
-	tmp = *env;
-	arr = (char **)malloc(sizeof(char *) * (size + 1));
-	index = 0;
-	while (tmp->next)
-	{
-		arr[index] = tmp->content;
-		tmp = tmp->next;
-		index++;
-	}
-	arr[index] = NULL;
-	return (arr);
-}
 
 void	init_minishell(char **envp)
 {
@@ -72,10 +51,10 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		line = readline("minishell> ");
-		if (line != NULL)
+		if (line)
 		{
-			printf("got in");
-			sleep(3);
+			if (!ft_strcmp(line, ""))
+				continue ;
 			add_history(line);
 			tokens = tokenize(line);
 			free(line);
@@ -85,7 +64,7 @@ int	main(int argc, char **argv, char **envp)
 				clear_tokens(&tokens);
 		}
 		else
-			ctrld();
+			fatal_error(NULL);
 	}
 	return (0);
 }

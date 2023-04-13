@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:07 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:51:09 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 07:24:58 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	exec_unset(t_cmd *cmds)
 		remove_env((cmds->cmd_args)[i]);
 		i++;
 	}
+	g_gen.exit_status = 0;
 	return (EXIT_SUCCESS);
 }

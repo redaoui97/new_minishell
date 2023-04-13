@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:50:40 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 08:06:37 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,11 @@ static int	change_dir(char **dir, char *cwd)
 		}
 		ptr = ptr->next;
 	}
+	free(cwd);
 	if (chdir(*dir) != 0)
-	{
-		simple_error(ft_strdup("Failed to change direcoty"));
-		free(*dir);
-		return (EXIT_FAILURE);
-	}
+		return (cd_error(dir));
 	free(*dir);
+	g_gen.exit_status = 0;
 	return (EXIT_SUCCESS);
 }
 
@@ -79,6 +77,7 @@ static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
 
 	if (!(stat(*dir, &st) == 0 && S_ISDIR(st.st_mode)))
 	{
+		g_gen.exit_status = 1;
 		simple_error(ft_strjoin("no such file or directory: ", cmd_dir));
 		return (EXIT_FAILURE);
 	}
@@ -91,6 +90,8 @@ int	exec_cd(t_cmd *cmds)
 	char	*home;
 	char	*cwd;
 
+	if (check_cmd_nbr(cmds, 2))
+		return (1);
 	home = get_home_path();
 	cwd = get_cwd();
 	if ((cmds->cmd_args)[1] == NULL)

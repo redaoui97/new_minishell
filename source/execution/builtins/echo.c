@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:20 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 10:06:03 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 08:15:19 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	exec_echo(t_cmd *cmd)
 	}
 	if (!param)
 		printf("\n");
+	g_gen.exit_status = 0;
 	return (0);
 }

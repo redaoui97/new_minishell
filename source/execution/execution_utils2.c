@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:16:51 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:51:18 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 07:34:18 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,3 @@ int	open_pipes(int (*pipes)[2], int pipes_count)
 	}
 	return (EXIT_SUCCESS);
 }
-
-// static void	close_pipes(int (*pipes)[2], int pipes_count)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < pipes_count)
-// 	{
-// 		close(pipes[i][0]);
-// 		close(pipes[i][1]);
-// 		i++;
-// 	}
-// }

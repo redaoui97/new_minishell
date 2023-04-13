@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 22:07:07 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 07:24:15 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	exec_export(t_cmd *cmds)
 		{
 			if (add_exp_env((cmds->cmd_args)[i]) == EXIT_FAILURE)
 			{
+				g_gen.exit_status = 1;
 				simple_error(ft_strjoin((cmds->cmd_args)[i],
 										" not a valid identifier"));
 				return (EXIT_FAILURE);
@@ -95,5 +96,6 @@ int	exec_export(t_cmd *cmds)
 	{
 		print_sorted_args();
 	}
+	g_gen.exit_status = 0;
 	return (EXIT_SUCCESS);
 }

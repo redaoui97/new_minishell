@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 22:01:41 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 08:10:03 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ void				add_at_end(t_token **tokens_head, t_token *token);
 void	add_token_last(t_token **token_head,
 					unsigned int type,
 					char *data);
-char				**convert_to_array(t_list **env);
 int					count_pipes(t_token *tokens);
 char				*rm_quotes(char *str, char c);
 void				rm_quotes_tokens(t_token **tokens);
@@ -191,10 +190,8 @@ void				rm_spaces(t_token **tokens);
 int					check_pipe(t_token *token);
 int					check_directions(t_token *token);
 int					syntax_err(t_token *token);
-int					ctrld(void);
 void				handler(int sig);
 int					handle_signals(void);
-int					terminal_settings(void);
 int					check_quotes(t_token *token);
 int					check_inside(t_token *tmp);
 int					check_newline(t_token *c);
@@ -214,6 +211,7 @@ void				suite9(char *str);
 /*Exec functions*/
 void				execute(t_cmd *cmds, int pipes_count);
 int					simple_error(char *msg);
+int					fatal_error(char *msg);
 /*utils functions*/
 char				*ft_strjoin_adjusted(char *s1, char *s2);
 char				*ft_substr_adjusted(char const *s, unsigned int start,
@@ -223,10 +221,10 @@ char				**ft_split_adjusted(char const *s, char c);
 int					is_builtin(t_cmd *cmd);
 int					exec_builtin(t_cmd *cmds, int cmd_num);
 int					exec_echo(t_cmd *cmd);
-int					exec_exit(int cmd_num);
+int					exec_exit(int cmd_num, int ret);
 int					exec_pwd(void);
 int					exec_cd(t_cmd *cmds);
-int					exec_env(void);
+int					exec_env(t_cmd *cmds);
 int					exec_export(t_cmd *cmds);
 void				print_sorted_args(void);
 void				sort_string(char **strings, int n);
@@ -241,5 +239,7 @@ void				close_files(t_cmd *cmd);
 void				set_pipes(t_cmd *cmd, int (*pipe_in)[2],
 						int (*pipe_out)[2]);
 int					open_pipes(int (*pipes)[2], int pipes_count);
+int					check_cmd_nbr(t_cmd *cmds, int num);
 char				*get_path(char *cmd, char *env_path);
+int					cd_error(char **dir);
 #endif

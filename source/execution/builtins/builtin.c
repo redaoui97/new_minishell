@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:46:31 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:50:21 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/13 08:14:35 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_builtin(t_cmd *cmds)
 	char	*cmd;
 
 	cmd = cmds->cmd_args[0];
+	if (!cmd)
+		return(EXIT_FAILURE);
 	if (!ft_strcmp(cmd, "echo"))
 		return (1);
 	if (!ft_strcmp(cmd, "exit"))
@@ -39,16 +41,18 @@ static void	exec_builtin_func(t_cmd *cmds, int cmd_num)
 	char	*cmd;
 
 	cmd = cmds->cmd_args[0];
+	if (!cmd)
+		return ;
 	if (!ft_strcmp(cmd, "echo"))
 		exec_echo(cmds);
 	if (!ft_strcmp(cmd, "exit"))
-		exec_exit(cmd_num);
+		exec_exit(cmd_num, 0);
 	if (!ft_strcmp(cmd, "pwd"))
 		exec_pwd();
 	if (!ft_strcmp(cmd, "cd"))
 		exec_cd(cmds);
 	if (!ft_strcmp(cmd, "env"))
-		exec_env();
+		exec_env(cmds);
 	if (!ft_strcmp(cmd, "export"))
 		exec_export(cmds);
 	if (!ft_strcmp(cmd, "unset"))
@@ -81,6 +85,23 @@ int	exec_builtin(t_cmd *cmds, int cmd_num)
 		close(cmds->outfile);
 		dup2(std_dir[1], STDOUT_FILENO);
 		close(std_dir[1]);
+	}
+	return (0);
+}
+
+int	check_cmd_nbr(t_cmd *cmds, int num)
+{
+	int	count;
+
+	count = 0;
+	while ((cmds->cmd_args)[count])
+		count++;
+	if (count > num)
+	{
+		simple_error(ft_strjoin_adjusted\
+		(ft_strdup((cmds->cmd_args)[0]), ": too many arguments"));
+		g_gen.exit_status = 127;
+		return (1);
 	}
 	return (0);
 }
