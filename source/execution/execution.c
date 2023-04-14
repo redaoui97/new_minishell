@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 06:39:02 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 09:30:43 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,18 @@ void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
 	int		**pipes;
-	pid_t	pid_status[2];
+	pid_t	pid_status;
 
 	i = 0;
 	pipes = alloc_pipes(pipes_count);
 	if (open_pipes(pipes, pipes_count) == EXIT_FAILURE)
 		return ;
+	sig_ign();
 	while (i <= pipes_count)
 	{
 		if (pipes_count)
-		{
 			process_pipes(i, cmds, pipes, pipes_count);
-		}
-		pid_status[0] = execute_command(&cmds[i], pipes_count + 1, pipes);
+		pid_status = execute_command(&cmds[i], pipes_count + 1, pipes);
 		close_files(&cmds[i]);
 		i++;
 	}
