@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/14 03:42:42 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:54:07 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void			creat_cmd_args(t_cmd **cmds, int pipe);
 t_cmd			*setup_cmd(t_token **tokens, int *pipes);
 void			parse_cmds(t_token **toknes);
 void			cmd_not_found(char *cmd);
+void			open_rest_file_err(int fd, t_token **tokens, int status);
 int				is_directory(const char *path);
 void			is_a_dir(char *dir);
 char			*return_path(char **cmd_path, char **paths);
@@ -246,4 +247,7 @@ int				**alloc_pipes(int num);
 int				check_cmd_nbr(t_cmd *cmds, int num);
 char			*get_path(char *cmd, char *env_path);
 int				cd_error(char **dir);
+void			close_pipes(int **pipes, int pipes_count);
+void			wait_child(int pids[2]);
+int				check_cmd(t_cmd *cmd, int cmd_num);
 #endif

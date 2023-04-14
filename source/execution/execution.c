@@ -6,73 +6,41 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 03:47:32 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:39:02 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//needs to be changed to store last exit status and skip cmds after followed execution
-static void	wait_child(int pids[2])
+static void	child_exec(t_cmd *cmd, int cmd_num, int **pipes)
 {
-	waitpid(pids[0],&(pids[1]), 0);
-	while (waitpid(-1, 0, 0) != -1)
-		;
-	g_gen.exit_status = WEXITSTATUS(pids[1]);
-	if (WIFSIGNALED(pids[1]))
-	{
-		if (WTERMSIG(pids[1]) == 3)
-			printf("Quit: 3\n");
-		g_gen.exit_status = 128 + WTERMSIG(pids[1]);
-	}
-}
+	char	**envp;
+	char	*path;
 
-static int	check_cmd(t_cmd *cmd, int cmd_num)
-{
-	char *path;
-
-	if (!cmd)
-		return (EXIT_FAILURE);
+	sig_dfl();
+	envp = make_envp();
 	path = get_path(cmd->cmd_args[0], find_path_env());
-	if (is_builtin(cmd))
+	if (cmd->infile != -1)
 	{
-		exec_builtin(cmd, cmd_num);
-		free (path);
-		return (EXIT_FAILURE);
+		dup2(cmd->infile, 0);
+		close (cmd->infile);
+		if (cmd->pipe_in)
+			close (cmd->pipe_in);
 	}
-	else if (!path)
+	if (cmd->outfile != -1)
 	{
-		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "), cmd->cmd_args[0]));
-		free (path);
-		return (EXIT_FAILURE);
+		dup2(cmd->outfile, 1);
+		close (cmd->infile);
+		if (cmd->pipe_out)
+			close (cmd->pipe_out);
 	}
-	else
-	{
-		free (path);
-		return (EXIT_SUCCESS);
-	}
-}
-
-static void	close_pipes(int **pipes, int pipes_count)
-{
-	int	i;
-
-	i = 0;
-	while (i < pipes_count)
-	{
-		close(pipes[i][0]);
-		close(pipes[i][1]);
-		free(pipes[i]);
-		i++;
-	}
-	free (pipes);
+	close_pipes(pipes, cmd_num -1);
+	execve(path, cmd->cmd_args, envp);
 }
 
 static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 {
 	pid_t	pid;
-	char	*path;
-	char	**envp;
 
 	if (check_cmd(cmd, cmd_num) == EXIT_FAILURE)
 		return (-1);
@@ -82,35 +50,27 @@ static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 		return ((void)simple_error("failed to create a child process!"), -1);
 	if (pid == 0)
 	{
-		sig_dfl();
-		envp = make_envp();
-		path = get_path(cmd->cmd_args[0], find_path_env());
-		if (cmd->infile != -1)
-		{
-			dup2(cmd->infile, 0);
-			close (cmd->infile);
-			if (cmd->pipe_in)
-				close (cmd->pipe_in);
-		}
-		if (cmd->outfile != -1)
-		{
-			dup2(cmd->outfile, 1);
-			close (cmd->infile);
-			if (cmd->pipe_out)
-				close (cmd->pipe_out);
-		}
-		close_pipes(pipes, cmd_num -1);
-		execve(path, cmd->cmd_args, envp);
+		child_exec(cmd, cmd_num, pipes);
 	}
 	return (pid);
+}
+
+static void	process_pipes(int i, t_cmd *cmds, int **pipes, int pipes_count)
+{
+	if (i == 0)
+		set_pipes(&(cmds[i]), NULL, pipes[i]);
+	else if (i == pipes_count)
+		set_pipes(&(cmds[i]), pipes[i - 1], NULL);
+	else
+		set_pipes(&(cmds[i]), pipes[i - 1], pipes[i]);
 }
 
 void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
 	int		**pipes;
-	pid_t		pid_status[2];
-	
+	pid_t	pid_status[2];
+
 	i = 0;
 	pipes = alloc_pipes(pipes_count);
 	if (open_pipes(pipes, pipes_count) == EXIT_FAILURE)
@@ -119,12 +79,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 	{
 		if (pipes_count)
 		{
-			if (i == 0)
-				set_pipes(&cmds[i], NULL, pipes[i]);
-			else if (i == pipes_count)
-				set_pipes(&cmds[i], pipes[i - 1], NULL);
-			else
-				set_pipes(&cmds[i], pipes[i - 1], pipes[i]);
+			process_pipes(i, cmds, pipes, pipes_count);
 		}
 		pid_status[0] = execute_command(&cmds[i], pipes_count + 1, pipes);
 		close_files(&cmds[i]);

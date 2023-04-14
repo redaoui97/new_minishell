@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:07 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 07:24:58 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:14:02 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	remove_env(char *env)
 
 int	exec_unset(t_cmd *cmds)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((cmds->cmd_args)[i])

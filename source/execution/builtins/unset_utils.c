@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 08:05:29 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:51:07 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:14:16 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	free_env(t_list *ptr)
 
 void	remove_env_var(t_list *ptr)
 {
-	t_list *ptr2;
+	t_list	*ptr2;
 
 	ptr2 = g_gen.env;
 	if (ptr == g_gen.env)

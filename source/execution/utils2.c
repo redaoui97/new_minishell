@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 02:09:12 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:51:30 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:41:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ static void	fill_words(char **words, const char *s, char c, int count)
 
 char	**ft_split_adjusted(char const *s, char c)
 {
-	int words_count;
-	char **words;
+	int		words_count;
+	char	**words;
 
 	words_count = count_parts(s, c);
 	words = (char **)malloc(sizeof(char *) * (words_count + 1));

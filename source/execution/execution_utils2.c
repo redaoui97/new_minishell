@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:16:51 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 03:46:46 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:40:44 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	**alloc_pipes(int num)
 {
 	int	**pipes;
 	int	i;
-	
+
 	pipes = (int **)malloc(sizeof(int *) * num);
 	if (!pipes)
 		return (NULL);
@@ -86,4 +86,19 @@ int	open_pipes(int **pipes, int pipes_count)
 		i++;
 	}
 	return (EXIT_SUCCESS);
+}
+
+void	close_pipes(int **pipes, int pipes_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipes_count)
+	{
+		close(pipes[i][0]);
+		close(pipes[i][1]);
+		free(pipes[i]);
+		i++;
+	}
+	free (pipes);
 }

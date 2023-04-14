@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:18 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:53:06 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:47:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	join_word(t_token **tokens)
 	{
 		if (tmp->type == WORD || tmp->type == DQUOTE || tmp->type == QUOTE)
 		{
-			while (tmp->next != NULL &&
-					(tmp->next->type == WORD || tmp->next->type == DQUOTE
-							|| tmp->next->type == QUOTE))
+			while (tmp->next != NULL
+				&& (tmp->next->type == WORD || tmp->next->type == DQUOTE
+					|| tmp->next->type == QUOTE))
 			{
 				tmp->data = join_mix(tmp, tmp->next);
 				tmp->type = WORD;

@@ -5,12 +5,12 @@ DIRBUILD = objdir
 INC  = -I ./includes
 HEADERS = includes/minishell.h
 LIBFT = includes/libft/libft.a
-Exec = $(addprefix execution/, execution error utils utils2 execution_utils execution_utils2)
-Builtins = $(addprefix execution/builtins/, builtin cd echo env exit export export_utils pwd unset unset_utils)
+Exec = $(addprefix execution/, execution error utils utils2 execution_utils execution_utils2 execution_utils3)
+Builtins = $(addprefix execution/builtins/, builtin cd echo env exit export export_utils export_utils2 pwd unset unset_utils)
 SRC =  $(addprefix parser/, cmd_creation cmd_utils_ cmd_utils creat_cmds enviroment\
 error_free execution_utils execution_utils2 finding_ finding\
 get_tokens__ get_tokens_ heredoc_utils heredoc_utils2 heredoc in_out_file_managment\
-in_out_utils joining list_manupulation pipe_management removing signals\
+in_out_utils in_out_utils2 joining list_manupulation pipe_management removing signals\
 syntax_analyzer token expantion) $(Exec) $(Builtins) main
 
 OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))

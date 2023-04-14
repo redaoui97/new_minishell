@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/14 05:11:10 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:49:12 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ int	check_quotes(t_token *token)
 {
 	while (token != NULL)
 	{
-		printf("hna\n");
 		if (token->type == QUOTE || token->type == DQUOTE)
 		{
-			printf("hna:%d\n",(int)ft_strlen(token->data));
 			if (token->data[0] == token->data[(int)ft_strlen(token->data) - 1]
 				&& ft_strlen(token->data) != 1)
-				printf("hna3\n");
+				;
 			else
 				return (0);
 		}
@@ -47,7 +45,7 @@ int	check_pipe(t_token *token)
 			found = 1;
 		}
 		else if (token->type == WORD || token->type == QUOTE
-				|| token->type == DQUOTE || token->type == DOLLAR)
+			|| token->type == DQUOTE || token->type == DOLLAR)
 			found = 0;
 		token = token->next;
 	}
@@ -73,7 +71,7 @@ int	check_directions(t_token *token)
 		else if (token->type == PIPE && found == 1)
 			return (0);
 		else if (token->type == WORD || token->type == QUOTE
-				|| token->type == DQUOTE || token->type == DOLLAR)
+			|| token->type == DQUOTE || token->type == DOLLAR)
 			found = 0;
 		token = token->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:55 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:52:41 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:45:18 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	expander(t_token **tokens)
 	{
 		if (tmp->type == DOLLAR)
 		{
-			if (tmp->next != NULL && tmp->next->type != SPAACE &&
-				(tmp->next->type == WORD || tmp->next->type == DQUOTE
-						|| tmp->next->type == DOLLAR))
+			if (tmp->next != NULL && tmp->next->type != SPAACE
+				&& (tmp->next->type == WORD || tmp->next->type == DQUOTE
+					|| tmp->next->type == DOLLAR))
 				play_with_tokens(&tmp, ft_strdup(tmp->next->data), g_gen.env);
 			else if ((tmp->next != NULL && tmp->next->type == SPAACE)
-					|| (tmp->next == NULL))
+				|| (tmp->next == NULL))
 				tmp->type = WORD;
 		}
 		tmp = tmp->next;

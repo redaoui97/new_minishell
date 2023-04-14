@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:00 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 07:21:53 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:13:46 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exec_pwd(void)
 {
-	t_list *ptr;
+	t_list	*ptr;
 
 	ptr = g_gen.env;
 	while (ptr)

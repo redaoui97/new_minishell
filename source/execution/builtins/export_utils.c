@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 07:05:55 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:50:59 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:13:18 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static char	**make_non_exp_envp(void)
 
 void	print_sorted_args(void)
 {
-	char **exp_env;
-	char **non_exp_env;
-	int i;
+	char	**exp_env;
+	char	**non_exp_env;
+	int		i;
 
 	i = 0;
 	exp_env = make_exp_envp();

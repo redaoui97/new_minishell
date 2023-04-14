@@ -6,43 +6,11 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:23:50 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:53:03 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:59:23 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static void	open_file_err(t_token **tokens, int fd, int status)
-{
-	if ((*tokens)->next->old_data == NULL && (fd == -1 && status != 1))
-		perror("minishell");
-	else
-	{
-		if ((ft_strcmp((*tokens)->next->data, "") == 0)
-			&& (*tokens)->next->old_data != NULL)
-			printf("minishell: %s: ambiguous redirect\n",
-					(*tokens)->next->old_data);
-		else if ((*tokens)->next->old_data != NULL && status != 1)
-			perror("minishelll");
-	}
-}
-
-void	open_rest(t_token *token)
-{
-	int	ingnor;
-
-	while (token)
-	{
-		if (token->type == DLESS)
-		{
-			if (token->next->old_data)
-				heredoc(ft_strdup(token->next->old_data), &ingnor);
-			else
-				heredoc(ft_strdup(token->next->data), &ingnor);
-		}
-		token = token->next;
-	}
-}
 
 int	open_file(t_token **tokens, int type)
 {
@@ -66,11 +34,7 @@ int	open_file(t_token **tokens, int type)
 		if (status)
 			fd = status * (-1);
 	}
-	if (fd < 0)
-	{
-		open_rest((*tokens)->next);
-		open_file_err(tokens, fd, status);
-	}
+	open_rest_file_err(fd, tokens, status);
 	return (fd);
 }
 

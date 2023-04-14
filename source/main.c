@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/13 03:35:24 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:43:32 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 t_gen	g_gen;
 
-void	init_minishell(char **envp)
+void	init_minishell(char **envp, char **argv)
 {
 	char	p[PATH_MAX];
 
+	(void)argv;
 	getcwd(p, PATH_MAX);
 	g_gen.pwd = ft_strdup(p);
 	g_gen.env = env_create(envp);
@@ -46,8 +47,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 1)
 		return (1);
-	(void)argv;
-	init_minishell(envp);
+	init_minishell(envp, argv);
 	while (1)
 	{
 		line = readline("minishell> ");

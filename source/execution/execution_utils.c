@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:13:20 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/12 21:51:16 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 06:39:55 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	get_envp_size(void)
 
 char	**make_envp(void)
 {
-	char **envp;
-	t_list *ptr;
-	int i;
+	char	**envp;
+	t_list	*ptr;
+	int		i;
 
 	ptr = g_gen.env;
 	i = 0;
