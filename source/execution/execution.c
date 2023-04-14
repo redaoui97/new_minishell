@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 01:56:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:20:37 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,22 @@ static int	check_cmd(t_cmd *cmd, int cmd_num)
 	}
 }
 
-static int	execute_command(t_cmd *cmd, int cmd_num)
+static void	close_pipes(int **pipes, int pipes_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipes_count)
+	{
+		close(pipes[i][0]);
+		close(pipes[i][1]);
+		free(pipes[i]);
+		i++;
+	}
+	free (pipes);
+}
+
+static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 {
 	pid_t	pid;
 	char	*path;
@@ -73,30 +88,18 @@ static int	execute_command(t_cmd *cmd, int cmd_num)
 		{
 			dup2(cmd->infile, 0);
 			close (cmd->infile);
+			close (cmd->outfile);
 		}
 		if (cmd->outfile != -1)
 		{
 			dup2(cmd->outfile, 1);
+			close (cmd->infile);
 			close (cmd->outfile);
 		}
+		close_pipes(pipes, cmd_num -1);
 		execve(path, cmd->cmd_args, envp);
 	}
 	return (pid);
-}
-
-static void	close_pipes(int **pipes, int pipes_count)
-{
-	int	i;
-
-	i = 0;
-	while (i < pipes_count)
-	{
-		close(pipes[i][0]);
-		close(pipes[i][1]);
-		free(pipes[i]);
-		i++;
-	}
-	free (pipes);
 }
 
 void	execute(t_cmd *cmds, int pipes_count)
@@ -120,7 +123,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 			else
 				set_pipes(&cmds[i], pipes[i - 1], pipes[i]);
 		}
-		pid_status[0] = execute_command(&cmds[i], pipes_count + 1);
+		pid_status[0] = execute_command(&cmds[i], pipes_count + 1, pipes);
 		close_files(&cmds[i]);
 		i++;
 	}
