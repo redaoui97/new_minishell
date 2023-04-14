@@ -6,13 +6,27 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:29 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/14 06:43:32 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 11:46:32 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 t_gen	g_gen;
+
+static int	all_spaces(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	init_minishell(char **envp, char **argv)
 {
@@ -53,7 +67,7 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("minishell> ");
 		if (line)
 		{
-			if (!ft_strcmp(line, ""))
+			if (!ft_strcmp(line, "") || all_spaces(line))
 				continue ;
 			add_history(line);
 			tokens = tokenize(line);

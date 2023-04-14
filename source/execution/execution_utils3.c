@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 06:27:10 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 09:31:16 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 11:54:22 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	wait_child(int pids)
 	int	status;
 	
 	if (pids != -1)
-	waitpid(pids, &status, 0);
+		waitpid(pids, &status, 0);
 	while (waitpid(-1, 0, 0) != -1)
 		;
 	g_gen.exit_status = WEXITSTATUS(status);

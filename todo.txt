@@ -6,6 +6,6 @@
 ++unexpcted syntaxe error single/double quote near pipe
 +++++quotes/double quotes need a lot of testing
 
-++check if double close in mac causes an issue
-
-++return the pid from waitpid
+++heap use after free /bin/list_manupulation
+++double free /bin/ls
+++exit shouldn't take aargs
