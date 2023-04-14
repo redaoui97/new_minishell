@@ -22,5 +22,3 @@ i-following cmd automatically kills the precedent process
 
 ++close files, need to close pipe for the precedent process to directory
 ++return the pid from waitpid
-++
-++https://github.com/mharriso/school21-checklists/blob/master/ng_3_minishell.pdf

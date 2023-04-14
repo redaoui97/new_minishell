@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:19 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/13 21:36:51 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 00:50:42 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,27 @@ void	handler(int sig)
 	{
 		g_gen.exit_status = 1;
 		ft_putstr_fd("\n", 2);
-		//rl_replace_line("", 1);
+		rl_replace_line("", 1);
 		rl_on_new_line();
 	}
 	rl_on_new_line();
 	rl_redisplay();
 }
 
+void	sig_ign(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	sig_dfl(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
+
+void	sig_handler(void)
+{
+	signal(SIGQUIT, handler);
+	signal(SIGINT, handler);
+}

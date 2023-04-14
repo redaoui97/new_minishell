@@ -6,18 +6,18 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:16:51 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 07:34:18 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 01:00:50 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	set_pipes(t_cmd *cmd, int (*pipe_in)[2], int (*pipe_out)[2])
+void	set_pipes(t_cmd *cmd, int *pipe_in, int *pipe_out)
 {
-	if (cmd->infile == -1 && *pipe_in)
-		cmd->infile = (*pipe_in)[0];
-	if (cmd->outfile == -1 && *pipe_out)
-		cmd->outfile = (*pipe_out)[1];
+	if (cmd->infile == -1 && pipe_in)
+		cmd->infile = pipe_in[0];
+	if (cmd->outfile == -1 && pipe_out)
+		cmd->outfile = pipe_out[1];
 }
 
 void	close_files(t_cmd *cmd)
@@ -28,11 +28,40 @@ void	close_files(t_cmd *cmd)
 		close(cmd->outfile);
 }
 
-int	open_pipes(int (*pipes)[2], int pipes_count)
+int	**alloc_pipes(int num)
+{
+	int	**pipes;
+	int	i;
+	
+	pipes = (int **)malloc(sizeof(int *) * num);
+	if (!pipes)
+		return (NULL);
+	i = 0;
+	while (i < num)
+	{
+		pipes[i] = (int *)malloc (sizeof(int) * 2);
+		if (pipes[i] == NULL)
+		{
+			while (i)
+			{
+				free (pipes[i]);
+				i--;
+			}
+			free (pipes);
+			return (NULL);
+		}
+		i++;
+	}
+	return (pipes);
+}
+
+int	open_pipes(int **pipes, int pipes_count)
 {
 	int	i;
 	int	j;
 
+	if (!pipes)
+		return (EXIT_FAILURE);
 	i = 0;
 	while (i < pipes_count)
 	{
