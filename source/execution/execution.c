@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 03:20:37 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:35:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 
 	if (check_cmd(cmd, cmd_num) == EXIT_FAILURE)
 		return (-1);
+	(void)pipes;
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"), -1);
@@ -88,13 +89,11 @@ static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 		{
 			dup2(cmd->infile, 0);
 			close (cmd->infile);
-			close (cmd->outfile);
 		}
 		if (cmd->outfile != -1)
 		{
 			dup2(cmd->outfile, 1);
 			close (cmd->infile);
-			close (cmd->outfile);
 		}
 		close_pipes(pipes, cmd_num -1);
 		execve(path, cmd->cmd_args, envp);
@@ -106,7 +105,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 {
 	int		i;
 	int		**pipes;
-	int		pid_status[2];
+	pid_t		pid_status[2];
 	
 	i = 0;
 	pipes = alloc_pipes(pipes_count);
