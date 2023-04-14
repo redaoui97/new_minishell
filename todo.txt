@@ -6,6 +6,4 @@
 ++unexpcted syntaxe error single/double quote near pipe
 +++++quotes/double quotes need a lot of testing
 
-++heap use after free /bin/list_manupulation
-++double free /bin/ls
 ++exit shouldn't take aargs

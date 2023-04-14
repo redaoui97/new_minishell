@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:13:20 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 06:39:55 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 21:12:39 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_path(char *cmd, char *env_path)
 	int		i;
 
 	if (access(cmd, X_OK) == 0)
-		return (cmd);
+		return (ft_strdup(cmd));
 	paths = ft_split_adjusted(env_path, ':');
 	i = 0;
 	while (paths[i])
