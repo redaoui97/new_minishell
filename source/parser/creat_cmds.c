@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:35 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:52:29 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:43:55 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_cmd	*creat_cmds(t_token **tokens, int *pipes)
 		cmds[i].tokens_cmd = *tokens;
 		cmds[i].infile = -1;
 		cmds[i].outfile = -1;
+		cmds[i].pipe_in = -1;
+		cmds[i].pipe_out = -1;
 		cmds[i].cmd_args = NULL;
 		cmds[i].cmd_path = NULL;
 		cmds[i].exec = 0;

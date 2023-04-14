@@ -6,31 +6,48 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 21:37:49 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 04:35:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static int	check_exp_exists(char *exp)
+static int	eql_placemenet(char *var)
 {
 	int	i;
-	int	has_eql;
-	t_list	*ptr;
 
 	i = 0;
-	has_eql = 0;
-	while (exp[i])
-		if (exp[i] == '=')
-			has_eql++;
+	while (var[i])
+	{
+		if (var[i] == '=')
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+static int	check_exp_exists(char *exp)
+{
+	t_list	*ptr;
+
 	ptr = g_gen.env;
 	while (ptr)
 	{
-		if (ptr->exp == 0)
-			printf("%s\n", (char *)ptr->content);
+		if (eql_placemenet(exp) == -1)
+		{
+			if (!ft_strncmp(exp, ptr->content, ft_strlen(exp)))
+				return (1);
+		}
+		else
+		{
+			if (!ft_strncmp(exp, ptr->content, eql_placemenet(exp)))
+			{
+				remove_env_var(ptr);
+				return (0);
+			}
+		}
 		ptr = ptr->next;
 	}
-	//check this
 	return (0);
 }
 

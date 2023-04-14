@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:12 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:52:22 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:43:21 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	parse_cmds(t_token **toknes)
 	int		pipes_num;
 
 	cmds = setup_cmds(toknes, &pipes_num);
-	//if ((get_cmds_path(&cmds, pipes_num) == 0) &&\(g_gen.skip_all == 0))
 	execute(cmds, pipes_num);
 	free_cmds(cmds, pipes_num);
 }

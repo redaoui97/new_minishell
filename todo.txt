@@ -10,15 +10,12 @@ i-following cmd automatically kills the precedent process
 	leaks on cd
 	++when I kill a process (ping google.com) there is a leak on path/get_path/execution
 	+leaks on cd
-	
+	+leaks when I use heredoc on get_path/execution
 }
-+fix the wait child process (e.g : ping google.com | ls : should abort first command once the second is executed)
-++if var exported already exists, replace it (if the new var doesn't have a value, keep old var)
 ++error expanding env vars in single quotes : first character removed
 ++unexpcted syntaxe error single/double quote near pipe
 +++++quotes/double quotes need a lot of testing
 
 ++check if double close in mac causes an issue
 
-++close files, need to close pipe for the precedent process to directory
 ++return the pid from waitpid

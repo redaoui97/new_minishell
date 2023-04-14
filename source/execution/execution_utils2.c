@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:16:51 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 01:00:50 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:46:46 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 void	set_pipes(t_cmd *cmd, int *pipe_in, int *pipe_out)
 {
 	if (cmd->infile == -1 && pipe_in)
+	{
 		cmd->infile = pipe_in[0];
+		cmd->pipe_in = pipe_in[1];
+	}
 	if (cmd->outfile == -1 && pipe_out)
+	{
 		cmd->outfile = pipe_out[1];
+		cmd->pipe_out = pipe_out[0];
+	}
 }
 
 void	close_files(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:07 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/12 21:53:26 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 05:11:10 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	check_quotes(t_token *token)
 {
 	while (token != NULL)
 	{
+		printf("hna\n");
 		if (token->type == QUOTE || token->type == DQUOTE)
 		{
-			if (token->data[0] == token->data[ft_strlen(token->data) - 1]
+			printf("hna:%d\n",(int)ft_strlen(token->data));
+			if (token->data[0] == token->data[(int)ft_strlen(token->data) - 1]
 				&& ft_strlen(token->data) != 1)
-				;
+				printf("hna3\n");
 			else
 				return (0);
 		}

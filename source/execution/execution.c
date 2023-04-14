@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 03:35:30 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 03:47:32 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,15 @@ static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 		{
 			dup2(cmd->infile, 0);
 			close (cmd->infile);
+			if (cmd->pipe_in)
+				close (cmd->pipe_in);
 		}
 		if (cmd->outfile != -1)
 		{
 			dup2(cmd->outfile, 1);
 			close (cmd->infile);
+			if (cmd->pipe_out)
+				close (cmd->pipe_out);
 		}
 		close_pipes(pipes, cmd_num -1);
 		execve(path, cmd->cmd_args, envp);
