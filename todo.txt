@@ -1,15 +1,5 @@
-
-i-following cmd automatically kills the precedent process
-
 +free leaked data
 {
-	ft_split_adjusted leaks data when called by ft_split_adjusted
-	ft_split_adjusted leaks 100%
-	make_envp leaks when changing directory (could not be something else because when I only run ls I get the same leaks)
-	leaks when I change oldpwd
-	leaks on cd
-	++when I kill a process (ping google.com) 	 is a leak on path/get_path/execution
-	+leaks on cd
 	+leaks when I use heredoc on get_path/execution
 }
 ++error expanding env vars in single quotes : first character removed

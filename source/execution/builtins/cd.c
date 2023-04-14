@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 08:06:37 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 08:21:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
 	{
 		g_gen.exit_status = 1;
 		simple_error(ft_strjoin("no such file or directory: ", cmd_dir));
+		free (cwd);
+		free (*dir);
 		return (EXIT_FAILURE);
 	}
 	return (change_dir(dir, cwd));
