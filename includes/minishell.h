@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/14 09:31:35 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 22:26:10 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void			sig_dfl(void);
 void			sig_ign(void);
 int				exec_builtin(t_cmd *cmds, int cmd_num);
 int				exec_echo(t_cmd *cmd);
-int				exec_exit(int cmd_num, int ret);
+int				exec_exit(t_cmd *cmd, int cmds, int ret);
 int				exec_pwd(void);
 int				exec_cd(t_cmd *cmds);
 int				exec_env(t_cmd *cmds);

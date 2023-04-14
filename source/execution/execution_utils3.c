@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 06:27:10 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 21:23:44 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 22:11:40 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	check_cmd(t_cmd *cmd, int cmd_num)
 		simple_error(ft_strjoin_adjusted(ft_strdup("Command not found: "),
 				cmd->cmd_args[0]));
 		free (path);
+		g_gen.exit_status = 127;
 		return (EXIT_FAILURE);
 	}
 	else

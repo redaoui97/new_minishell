@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:39 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/13 08:12:38 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 22:33:57 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	exec_env(t_cmd *cmds)
 	t_list	*ptr;
 
 	if (check_cmd_nbr(cmds, 1))
+	{
+		g_gen.exit_status = 127;
 		return (EXIT_FAILURE);
+	}
 	ptr = g_gen.env;
 	while (ptr)
 	{

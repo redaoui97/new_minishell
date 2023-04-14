@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:29:07 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 06:14:02 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/14 22:52:54 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	remove_env(char *env)
 		if (!ft_strcmp(env, env_name))
 		{
 			remove_env_var(ptr);
+			free (env_name);
 			return (EXIT_SUCCESS);
 		}
 		free(env_name);
