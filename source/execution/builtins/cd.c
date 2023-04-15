@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 08:21:56 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 10:22:56 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	exec_cd(t_cmd *cmds)
 		return (1);
 	home = get_home_path();
 	cwd = get_cwd();
+	if (!cwd || !home)
+		return (1);
 	if ((cmds->cmd_args)[1] == NULL)
 		dir = ft_strdup(home);
 	else if ((cmds->cmd_args)[1][0] == '/')

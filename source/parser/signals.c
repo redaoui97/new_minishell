@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:28:19 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/15 06:18:41 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 10:15:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int	handle_signals(void)
 {
-	struct termios	term;
-
-	tcgetattr(0, &term);
-	term.c_lflag &= ~(ECHOCTL);
-	tcsetattr(0, TCSANOW, &term);
 	signal(SIGQUIT, handler);
 	signal(SIGINT, handler);
 	return (0);
@@ -30,8 +25,8 @@ void	handler(int sig)
 	{
 		g_gen.exit_status = 1;
 		ft_putstr_fd("\n", 2);
-		//rl_replace_line("", 1);
 		rl_on_new_line();
+		rl_forced_update_display();
 	}
 	rl_on_new_line();
 	rl_redisplay();
