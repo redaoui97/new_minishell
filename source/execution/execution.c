@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 21:25:01 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 01:24:11 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	execute(t_cmd *cmds, int pipes_count)
 		close_files(&cmds[i]);
 		i++;
 	}
-	close_pipes(pipes, pipes_count);
+	close_free_pipes(pipes, pipes_count);
 	wait_child(pid_status);
 	sig_handler();
 }

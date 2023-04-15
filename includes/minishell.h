@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/14 22:26:10 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 01:22:41 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,4 +250,6 @@ int				cd_error(char **dir);
 void			close_pipes(int **pipes, int pipes_count);
 void			wait_child(int pids);
 int				check_cmd(t_cmd *cmd, int cmd_num);
+void			close_free_pipes(int **pipes, int pipes_count);
+void			free_pipes(int **pipes, int pipes_count);
 #endif

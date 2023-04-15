@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 02:05:01 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 06:41:35 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 01:22:14 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,24 @@ char	*ft_substr_adjusted(char const *s, unsigned int start, size_t len)
 		substr[i++] = s[start++];
 	substr[i] = '\0';
 	return (substr);
+}
+
+void	free_pipes(int **pipes, int pipes_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipes_count)
+	{
+		free (pipes[i]);
+		i++;
+
+	}
+	free (pipes);
+}
+
+void	close_free_pipes(int **pipes, int pipes_count)
+{
+	close_pipes(pipes, pipes_count);
+	free_pipes(pipes, pipes_count);
 }
