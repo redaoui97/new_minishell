@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 01:35:11 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 06:58:33 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 10:32:06 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	simple_error(char *msg)
 {
 	if (msg)
 	{
-		perror(msg);
+		write(2, msg, ft_strlen(msg));
+		write(2, &"\n", 1);
 		free(msg);
 	}
 	return (EXIT_FAILURE);

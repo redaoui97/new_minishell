@@ -17,14 +17,14 @@ OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))
 
 all : $(NAME)
 $(NAME) : $(OBJ) $(LIBFT) $(HEADERS)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFT) -lreadline -o $(NAME) -fsanitize=address
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(READ) -lreadline $(LDFLAGS)  $(LIBFT)
 
 $(LIBFT) :
 	@make -C includes/libft
 	
 $(DIRBUILD)/%.o : source/%.c $(HEADERS)
 	@mkdir -p $(@D)
-	@$(CC) $(INC) $(FLAGS) -c $< -o $@ 
+	@$(CC) $(INC) $(CPPFLAGS) $(RL_INCLUDE) -c $< -o $@
 clean :
 	@rm -rf $(DIRBUILD)
 	@make clean -C includes/libft

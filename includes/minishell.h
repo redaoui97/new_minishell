@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/15 06:13:23 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 10:39:50 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include "../includes/libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
 # include <stdio.h>
+# include <signal.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
@@ -27,6 +25,8 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 # define YES 1
 # define NO 0
