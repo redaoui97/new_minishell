@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:08 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/12 21:52:51 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 03:31:17 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	get_quote(char **str, char c)
 {
-	int	i;
+	int		i;
 
 	i = 1;
 	while ((*str)[i] != '\0' && (*str)[i] != c)
 		i++;
+	if ((*str)[i] == '\0')
+	{
+		*str = *str + i;
+		return (i + 1);
+	}
 	*str = *str + i + 1;
 	return (i + 1);
 }

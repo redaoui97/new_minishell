@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/15 01:22:41 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 06:13:23 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,9 @@ char			*get_env_var(char *str, t_list *env);
 int				get_dollars(char *str);
 void			get_sympol_less(t_token **tokens, char **str, int *here);
 void			get_token_utils(t_token **tokens,
-						char **str,
-						int *here,
-						int *here2);
+					char **str,
+					int *here,
+					int *here2);
 int				get_quote(char **str, char c);
 int				get_word(char **str, int *here, int *here2);
 char			*get_char(char **str, char *c, int increment);
@@ -217,7 +217,7 @@ int				fatal_error(char *msg);
 /*utils functions*/
 char			*ft_strjoin_adjusted(char *s1, char *s2);
 char			*ft_substr_adjusted(char const *s, unsigned int start,
-						size_t len);
+					size_t len);
 char			**ft_split_adjusted(char const *s, char c);
 /*builtins functions*/
 int				is_builtin(t_cmd *cmd);

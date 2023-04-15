@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:52:47 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/14 06:50:27 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 03:27:00 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	get_token_check(t_token **tokens, char **str, int *here, int *here2)
 {
 	if (**str == '\"' && *here == 0)
-		add_token_last(tokens, DQUOTE, ft_substr(*str, 0,
-				get_quote(str, '\"')));
+		add_token_last(tokens, DQUOTE, \
+		ft_substr(*str, 0, get_quote(str, '\"')));
 	else if (**str == '\'' && *here == 0)
-		add_token_last(tokens, QUOTE, ft_substr(*str, 0, get_quote(str, '\'')));
-	else if (**str == ' ' || **str == '\t' || **str == '\v' || **str == '\f')
+		add_token_last(tokens, QUOTE, \
+		ft_substr(*str, 0, get_quote(str, '\'')));
+	else if (**str == ' ' || **str == '\t' \
+	|| **str == '\v' || **str == '\f')
 		add_token_last(tokens, SPAACE, get_char(str, " ", 1));
 	else if (**str == '>')
 		get_sympol_great(tokens, str);

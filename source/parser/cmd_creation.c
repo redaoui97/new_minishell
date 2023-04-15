@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 01:51:12 by ael-yamo          #+#    #+#             */
-/*   Updated: 2023/04/14 03:43:21 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 06:12:25 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**get_cmds(t_token *tokens)
 		return (NULL);
 	while (tokens)
 	{
-		if ((tokens->data)[0] < 42 || (tokens->data)[0] > 126)
+		if ((tokens->data)[0] < 32 || (tokens->data)[0] > 126)
 			cmds[i] = ft_substr(tokens->data, 2, ft_strlen(tokens->data) - 1);
 		else
 			cmds[i] = ft_strdup(tokens->data);
