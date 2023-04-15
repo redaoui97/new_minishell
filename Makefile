@@ -16,8 +16,8 @@ syntax_analyzer token expantion) $(Exec) $(Builtins) main
 OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))
 
 all : $(NAME)
-$(NAME) : $(OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $^ -o $(NAME) $(LDFLAGS) $(LIBFT) -lreadline
+$(NAME) : $(OBJ) $(LIBFT) $(HEADERS)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFT) -lreadline -o $(NAME)
 
 $(LIBFT) :
 	@make -C includes/libft
