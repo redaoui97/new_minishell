@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:26:50 by oufisaou          #+#    #+#             */
-/*   Updated: 2023/04/15 10:39:50 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:02:10 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,12 +222,16 @@ char			**ft_split_adjusted(char const *s, char c);
 /*builtins functions*/
 int				is_builtin(t_cmd *cmd);
 void			sig_handler(void);
+int				check_exp(char *exp, t_list *ptr);
 void			sig_dfl(void);
 void			sig_ign(void);
+void			exec_error(void);
+int				eql_placemenet(char *var);
 int				exec_builtin(t_cmd *cmds, int cmd_num);
 int				exec_echo(t_cmd *cmd);
 int				exec_exit(t_cmd *cmd, int cmds, int ret);
 int				exec_pwd(void);
+void			update_var(t_list *ptr, char *txt);
 int				exec_cd(t_cmd *cmds);
 int				exec_env(t_cmd *cmds);
 int				exec_export(t_cmd *cmds);

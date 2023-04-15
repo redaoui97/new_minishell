@@ -6,13 +6,13 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 11:43:30 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:01:01 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static int	eql_placemenet(char *var)
+int	eql_placemenet(char *var)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ static int	eql_placemenet(char *var)
 	return (-1);
 }
 
-static void	update_var(t_list *ptr, char *txt)
+void	update_var(t_list *ptr, char *txt)
 {
 	char	*res;
 
@@ -45,6 +45,7 @@ static void	update_var(t_list *ptr, char *txt)
 static int	check_exp_exists(char *exp)
 {
 	t_list	*ptr;
+	int		i;
 
 	ptr = g_gen.env;
 	while (ptr)
@@ -57,17 +58,9 @@ static int	check_exp_exists(char *exp)
 		}
 		else
 		{
-			if (!ft_strncmp(exp, ptr->content, eql_placemenet(exp)))
-			{
-				if (ft_strlen(exp) > 1 && exp[eql_placemenet(exp)] == '+')
-				{
-					update_var(ptr, exp + eql_placemenet(exp) + 2);
-					return (1);
-				}
-				else
-					remove_env_var(ptr);
-				return (0);
-			}
+			i = check_exp(exp, ptr);
+			if (i != -1)
+				return (i);
 		}
 		ptr = ptr->next;
 	}
@@ -100,10 +93,7 @@ int	exec_export(t_cmd *cmds)
 		while ((cmds->cmd_args)[i])
 		{
 			if ((cmds->cmd_args)[i][0] == '+')
-			{
-				simple_error(ft_strdup("not a valid identifier"));
-				g_gen.exit_status = 1;
-			}
+				exec_error();
 			else if (add_exp_env((cmds->cmd_args)[i]) == EXIT_FAILURE)
 			{
 				g_gen.exit_status = 1;

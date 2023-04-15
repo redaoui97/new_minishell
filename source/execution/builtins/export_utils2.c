@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 05:56:32 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/14 06:40:15 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:01:45 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,26 @@ void	print_processed_env(char *env)
 	if (has_eql)
 		printf("\"");
 	printf("\n");
+}
+
+int	check_exp(char *exp, t_list *ptr)
+{
+	if (!ft_strncmp(exp, ptr->content, eql_placemenet(exp)))
+	{
+		if (ft_strlen(exp) > 1 && exp[eql_placemenet(exp)] == '+')
+		{
+			update_var(ptr, exp + eql_placemenet(exp) + 2);
+			return (1);
+		}
+		else
+			remove_env_var(ptr);
+		return (0);
+	}
+	return (-1);
+}
+
+void	exec_error(void)
+{
+	simple_error(ft_strdup("not a valid identifier"));
+	g_gen.exit_status = 1;
 }
