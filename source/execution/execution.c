@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:30:27 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 06:47:27 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 07:37:02 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	execute_command(t_cmd *cmd, int cmd_num, int **pipes)
 	pid = fork();
 	if (pid == -1)
 		return ((void)simple_error("failed to create a child process!"), -1);
-	if (pid == 0)
+	if (pid == 0 && cmd->exec == 0)
 	{
 		child_exec(cmd, cmd_num, pipes);
 	}
