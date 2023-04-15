@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 03:29:28 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 10:22:56 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 11:40:59 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ static char	*get_cwd(void)
 static int	change_dir(char **dir, char *cwd)
 {
 	t_list	*ptr;
+	char	cwdd[256];
 
 	ptr = g_gen.env;
+	if (chdir(*dir) != 0)
+		return (cd_error(dir));
 	while (ptr)
 	{
 		if (!ft_strncmp("PWD", (char *)ptr->content, 3))
 		{
 			free(ptr->content);
-			ptr->content = ft_strjoin("PWD=", *dir);
+			ptr->content = ft_strjoin("PWD=", getcwd(cwdd, sizeof(cwdd)));
 		}
 		if (!ft_strncmp("OLDPWD", (char *)ptr->content, 6))
 		{
@@ -64,26 +67,27 @@ static int	change_dir(char **dir, char *cwd)
 		ptr = ptr->next;
 	}
 	free(cwd);
-	if (chdir(*dir) != 0)
-		return (cd_error(dir));
 	free(*dir);
 	g_gen.exit_status = 0;
 	return (EXIT_SUCCESS);
 }
 
-static int	cd_to_dir(char **dir, char *cmd_dir, char *cwd)
+static char	*ret_dir(t_cmd *cmds, char *cwd, char *home)
 {
-	struct stat	st;
+	char	*dir;
 
-	if (!(stat(*dir, &st) == 0 && S_ISDIR(st.st_mode)))
+	if ((cmds->cmd_args)[1] == NULL)
+		dir = ft_strdup(home);
+	else if ((cmds->cmd_args)[1][0] == '/')
+		dir = ft_strdup((cmds->cmd_args)[1]);
+	else if ((cmds->cmd_args)[1][0] == '~')
+		dir = ft_strjoin(home, (cmds->cmd_args)[1] + 1);
+	else
 	{
-		g_gen.exit_status = 1;
-		simple_error(ft_strjoin("no such file or directory: ", cmd_dir));
-		free (cwd);
-		free (*dir);
-		return (EXIT_FAILURE);
+		dir = ft_strjoin(cwd, "/");
+		dir = ft_strjoin_adjusted(dir, (cmds->cmd_args)[1]);
 	}
-	return (change_dir(dir, cwd));
+	return (dir);
 }
 
 int	exec_cd(t_cmd *cmds)
@@ -98,18 +102,6 @@ int	exec_cd(t_cmd *cmds)
 	cwd = get_cwd();
 	if (!cwd || !home)
 		return (1);
-	if ((cmds->cmd_args)[1] == NULL)
-		dir = ft_strdup(home);
-	else if ((cmds->cmd_args)[1][0] == '/')
-		dir = ft_strdup((cmds->cmd_args)[1]);
-	else if ((cmds->cmd_args)[1][0] == '~')
-		dir = ft_strjoin(home, (cmds->cmd_args)[1] + 1);
-	else if ((cmds->cmd_args)[1][0] == '.')
-		dir = ft_strjoin(cwd, (cmds->cmd_args)[1] + 1);
-	else
-	{
-		dir = ft_strjoin(cwd, "/");
-		dir = ft_strjoin_adjusted(dir, (cmds->cmd_args)[1]);
-	}
-	return (cd_to_dir(&dir, (cmds->cmd_args)[1], ft_strdup(cwd)));
+	dir = ret_dir(cmds, cwd, home);
+	return (change_dir(&dir, ft_strdup(cwd)));
 }

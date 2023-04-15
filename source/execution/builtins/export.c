@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 04:28:54 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 08:23:18 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 11:43:30 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static int	eql_placemenet(char *var)
 static void	update_var(t_list *ptr, char *txt)
 {
 	char	*res;
-	
+
 	if (!txt)
 		return ;
-	res = ft_strjoin((char*)ptr->content, txt);
+	res = ft_strjoin((char *)ptr->content, txt);
 	free(ptr->content);
-	ptr->content = (void*)res;
+	ptr->content = (void *)res;
 }
 
 static int	check_exp_exists(char *exp)
