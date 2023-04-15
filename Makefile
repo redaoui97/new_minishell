@@ -1,5 +1,5 @@
 CC = cc
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 NAME = minishell
 DIRBUILD = objdir
 INC  = -I ./includes
@@ -17,7 +17,7 @@ OBJ = $(addprefix $(DIRBUILD)/, $(SRC:=.o))
 
 all : $(NAME)
 $(NAME) : $(OBJ) $(LIBFT) $(HEADERS)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFT) -lreadline -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFT) -lreadline -o $(NAME) -fsanitize=address
 
 $(LIBFT) :
 	@make -C includes/libft

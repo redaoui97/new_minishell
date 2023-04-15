@@ -6,7 +6,7 @@
 /*   By: rnabil <rnabil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:16:51 by rnabil            #+#    #+#             */
-/*   Updated: 2023/04/15 01:25:09 by rnabil           ###   ########.fr       */
+/*   Updated: 2023/04/15 06:59:10 by rnabil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,16 @@ int	**alloc_pipes(int num)
 int	open_pipes(int **pipes, int pipes_count)
 {
 	int	i;
-	int	j;
 
 	if (!pipes)
 		return (EXIT_FAILURE);
 	i = 0;
 	while (i < pipes_count)
 	{
-		j = 0;
 		if (pipe(pipes[i]) == -1)
 		{
-			simple_error("Failed to create pipe");
-			while (j < i)
-			{
-				close(pipes[j][0]);
-				close(pipes[j][1]);
-				j++;
-			}
+			simple_error(ft_strdup("Failed to create pipe"));
+			free_pipes(pipes, pipes_count);
 			return (EXIT_FAILURE);
 		}
 		i++;
